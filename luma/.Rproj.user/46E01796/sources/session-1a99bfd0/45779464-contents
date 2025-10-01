@@ -1,0 +1,58 @@
+library(luma)
+
+# Toy "light curve": sinusoidal oscillation with noise
+set.seed(42)
+t <- seq(0, 2*pi, length.out = 200)
+f <- sin(t) + 0.1 * rnorm(length(t))
+
+path <- data.frame(t = t, f = f)
+
+# Quick visualization
+plot(path[,1], path[,2], type="l", col="blue", lwd=2,
+     xlab="Time", ylab="Flux", main="Toy Light Curve (sinusoid)")
+
+# Now compute scalar log-signature features
+drift_f(path)    # net change in flux
+levy_tf(as.matrix(path))    # area term
+curl_t(path)     # "weighted area" in time direction
+curl_f(path)     # "weighted area" in flux direction
+jerk_t(path)     # higher-order change along time
+twist_tf(path)   # interaction term
+jerk_f(path)     # higher-order change along flux
+
+sig_features(as.matrix(path),depth=3)
+
+
+
+# --- your shading function (keep the version without Unicode/smart quotes)
+# Build shaded polygons between curve and its chord, with rich outputs
+
+# toy signal
+set.seed(1)
+t <- seq(0, 2*pi, length.out = 400)
+f <- sin(t) + 0.15*t + 0.05*rnorm(length(t))
+path <- cbind(t = t, f = f)
+
+out <- shade_levy_polys(t, f, mode = "native")
+raw_match <- c(sum_poly = sum(out$segments$area_seg),
+               levy_raw = luma::levy_tf(path, normalize = FALSE),
+               diff     = sum(out$segments$area_seg) - luma::levy_tf(path, FALSE))
+
+norm_match <- c(levy_norm = luma::levy_tf(path, TRUE),
+                back_to_raw = luma::levy_tf(path, TRUE) * out$totals$Delta_t * out$totals$Delta_f,
+                diff = out$totals$levy_raw - (luma::levy_tf(path, TRUE) * out$totals$Delta_t * out$totals$Delta_f))
+
+raw_match
+norm_match
+
+set.seed(1)
+t <- seq(0, 4*pi, length.out = 400)
+f <- exp(-sin(t)) + 0.5*cos(t) - 0.15*t + 0.05*rnorm(length(t))
+
+res <- plot_levy_shading(t = t, f = f, mode = "max_dt", max_dt = 0.02, show_legend = TRUE)
+print(res$plot)
+
+
+
+
+

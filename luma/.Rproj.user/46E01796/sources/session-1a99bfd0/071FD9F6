@@ -1,0 +1,26 @@
+{
+    "id": "071FD9F6",
+    "path": "~/Documents/GitHub/luma/luma/R/hello.R",
+    "project_path": "R/hello.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1759328572060.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "316,10",
+        "scrollLine": "308"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1759330300,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1759330300824,
+    "read_only": false,
+    "read_only_alternatives": []
+}

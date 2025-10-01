@@ -1,0 +1,130 @@
+# --- Build shaded polygons between curve and its chord, per segment --------
+shade_levy_polys <- function(t, f) {
+  stopifnot(is.numeric(t), is.numeric(f), length(t) == length(f), length(t) >= 2)
+  o <- order(t); t <- t[o]; f <- f[o]
+  keep <- is.finite(t) & is.finite(f); t <- t[keep]; f <- f[keep]
+  Tlen <- t[length(t)] - t[1]
+  if (Tlen <= 0) stop("t must be strictly increasing for shading.")
+  # chord: linear interpolation between endpoints
+  slope <- (f[length(f)] - f[1]) / Tlen
+  chord <- f[1] + slope * (t - t[1])
+  
+  # per-segment polygons and signed areas
+  i0 <- seq_len(length(t) - 1); i1 <- i0 + 1
+  dt <- t[i1] - t[i0]
+  # trapezoid signed area between curve and chord on each segment
+  area_seg <- (( (f[i0] + f[i1]) - (chord[i0] + chord[i1]) ) / 2) * dt  # = -incremental Lévy area
+  sign_seg <- ifelse(area_seg >= 0, "above", "below")
+  
+  # polygons (t0,f0)-(t1,f1)-(t1,c1)-(t0,c0)
+  polys <- lapply(seq_along(i0), function(k){
+    data.frame(
+      seg_id = k,
+      t = c(t[i0[k]], t[i1[k]], t[i1[k]], t[i0[k]]),
+      y = c(f[i0[k]], f[i1[k]], chord[i1[k]], chord[i0[k]]),
+      area_seg = area_seg[k],
+      sign = sign_seg[k]
+    )
+  })
+  do.call(rbind, polys)
+}
+
+shade_levy_polys <- function(t, f, mode = c("native","uniform","max_dt"),
+                             grid_n = 256, max_dt = NULL) {
+  mode <- match.arg(mode)
+  stopifnot(is.numeric(t), is.numeric(f), length(t) == length(f), length(t) >= 2)
+  o <- order(t); t <- t[o]; f <- f[o]
+  keep <- is.finite(t) & is.finite(f); t <- t[keep]; f <- f[keep]
+  if ((Tlen <- t[length(t)] - t[1]) <= 0) stop("t must increase.")
+  
+  # --- choose resolution ---
+  if (mode == "uniform") {
+    t_new <- seq(t[1], t[length(t)], length.out = grid_n)
+    f     <- approx(t, f, xout = t_new, rule = 2)$y
+    t     <- t_new
+  } else if (mode == "max_dt") {
+    if (is.null(max_dt) || max_dt <= 0) stop("Provide positive max_dt for mode='max_dt'.")
+    tt <- t[1]; ff <- f[1]
+    for (k in seq_len(length(t)-1)) {
+      nsub <- max(1L, ceiling((t[k+1] - t[k]) / max_dt))
+      tk   <- seq(t[k], t[k+1], length.out = nsub + 1L)
+      fk   <- approx(c(t[k], t[k+1]), c(f[k], f[k+1]), xout = tk, rule = 2)$y
+      # append (drop first point to avoid dup)
+      tt <- c(tt, tk[-1]); ff <- c(ff, fk[-1])
+    }
+    t <- tt; f <- ff
+  }
+  # chord
+  slope <- (f[length(f)] - f[1]) / (t[length(t)] - t[1])
+  chord <- f[1] + slope * (t - t[1])
+  
+  i0 <- seq_len(length(t) - 1); i1 <- i0 + 1
+  dt <- t[i1] - t[i0]
+  area_seg <- (((f[i0] + f[i1]) - (chord[i0] + chord[i1]))/2) * dt  # = -Δ Lévy
+  sign_seg <- ifelse(area_seg >= 0, "above", "below")
+  
+  polys <- lapply(seq_along(i0), function(k){
+    data.frame(
+      seg_id   = k,
+      t        = c(t[i0[k]], t[i1[k]], t[i1[k]], t[i0[k]]),
+      y        = c(f[i0[k]], f[i1[k]], chord[i1[k]], chord[i0[k]]),
+      area_seg = area_seg[k],
+      sign     = sign_seg[k]
+    )
+  })
+  do.call(rbind, polys)
+}
+
+
+
+ex <- one_each %>%
+  dplyr::filter(class == unique(class)[5]) %>%  # or choose a class/name
+  dplyr::arrange(t)
+
+
+
+df <- fread("plasticc_train_lightcurves.csv")
+
+df0 <- df %>%
+  filter(object_id == 43211) %>%
+  mutate(passband = factor(passband)) %>%
+  arrange(passband, mjd) %>%
+  group_by(passband) %>%
+  mutate(mjd_c = mjd - min(mjd)) %>%     # center time per band/object
+  ungroup()
+
+# Keep a copy for plotting raw points
+df_plot <- df0
+
+poly_time <- shade_levy_polys(ex$t, ex$f, mode="max_dt", max_dt=0.01)
+#ex <- data.frame(t=df_plot$mjd-min(df_plot$mjd),f = df_plot$flux)
+
+p_time_shaded <- ggplot() +
+  geom_polygon(data = poly_time,
+               aes(t, y, group = seg_id, fill = sign),
+               alpha = 0.9, color = NA) +
+  geom_path(data = ex, aes(t, f), linewidth = 0.8,linetype="dashed",
+            color="gray") +
+  geom_point(data = ex, aes(t, f),shape=21,fill="gray") + 
+  # chord line
+  geom_abline(intercept = ex$f[1] - (ex$t[1]) * ( (ex$f[nrow(ex)]-ex$f[1])/(ex$t[nrow(ex)]-ex$t[1]) ),
+              slope = (ex$f[nrow(ex)]-ex$f[1])/(ex$t[nrow(ex)]-ex$t[1]),
+              linetype = 3) +
+  scale_fill_manual(name = "Signed area\n(seg)", values=c("orange","blue")) +
+  labs(x = "time", y = "Flux") +
+  theme_bw(base_size = 16) +
+  theme(legend.position="none",
+        panel.grid =  element_line("white"),
+        panel.background = element_rect(fill="#f5ebd8"))
+print(p_time_shaded)
+
+pdf("levy_area.pdf",height=6,width=8)
+print(p_time_shaded)
+dev.off()
+
+
+# (Optional) check relation to Lévy area:
+path <- cbind(ex$t, ex$f)
+S2_area_sig <- signature_signed_area(as.data.frame(t(stream2sig_d2(path))))
+sum_area_polys <- sum(unique(poly_time$seg_id) |> sapply(function(k) unique(poly_time$area_seg[poly_time$seg_id==k])))
+c(S2_area = S2_area_sig, minus_sum_shaded = -sum_area_polys)

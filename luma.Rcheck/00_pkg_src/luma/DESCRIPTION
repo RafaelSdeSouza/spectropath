@@ -1,0 +1,22 @@
+Package: luma
+Type: Package
+Title: Lie-Based Universal Manifold Approximation
+Version: 0.1.0
+Authors@R: 
+    c(person(given = "Rafael",
+             family = "S. de Souza",
+             role = c("aut", "cre"),
+             email = "rd23aag@herts.ac.uk"))
+Description: Tools for path signatures, log-signatures and Lie algebra–based
+    feature extraction for ordered data such as light curves and spectra.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Collate: 'algebra-helpers.R' 'chen.R' 'logsig.R' 'streamsig.R'
+        'features-scalars.R' 'path-coerce.R' 'plot_levy_shading.R'
+        'sig_features.R' 'validate.R'
+NeedsCompilation: no
+Packaged: 2025-10-01 21:48:51 UTC; rd23aag
+Author: Rafael S. de Souza [aut, cre]
+Maintainer: Rafael S. de Souza <rd23aag@herts.ac.uk>
