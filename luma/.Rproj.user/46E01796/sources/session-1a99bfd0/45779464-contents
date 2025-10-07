@@ -54,5 +54,22 @@ print(res$plot)
 
 
 
+set.seed(7)
+lambda <- seq(4000, 5000, length.out = 300)
+
+# three toy objects: symmetric absorption, asymmetric blue wing, emission
+g <- function(mu, sig) exp(-(lambda - mu)^2 / (2*sig^2))
+obj1 <- 1 - 0.5*g(4500, 20) + rnorm(length(lambda), 0, 0.01)         # symmetric absorption
+obj2 <- 1 - 0.5*g(4500, 20) - 0.1*g(4470, 10) + rnorm(length(lambda), 0, 0.01) # blue wing
+obj3 <- 1 + 0.6*g(4520, 15) + rnorm(length(lambda), 0, 0.01)         # emission
+
+spec_mat <- rbind(obj1, obj2, obj3)
+rownames(spec_mat) <- c("abs_sym", "abs_bluewing", "emission")
+colnames(spec_mat) <- as.character(lambda)
+
+# normalized features emphasize shape (good for clustering/embedding)
+feat_norm <- sig_features_wide(spec_mat, axis = lambda, depth = 4, normalize = TRUE, id_col = "object")
+feat_norm
+
 
 

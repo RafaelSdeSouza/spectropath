@@ -23,4 +23,5 @@ Collate:
     'path-coerce.R'
     'plot_levy_shading.R'
     'sig_features.R'
+    'sig_features_wide.R'
     'validate.R'
