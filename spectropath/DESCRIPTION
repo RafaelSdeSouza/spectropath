@@ -1,0 +1,34 @@
+Package: spectropath
+Type: Package
+Title: Path-Signature Diagnostics for Spectral-Line Morphology
+Version: 0.1.0
+Authors@R: person(given = "Rafael",
+    family = "S. de Souza",
+    email = "rd23aag@herts.ac.uk",
+    role = c("aut", "cre"))
+Author: Rafael S. de Souza [aut, cre]
+Maintainer: Rafael S. de Souza <rd23aag@herts.ac.uk>
+Description: Companion tools for representing astronomical spectral features
+    as ordered paths and extracting low-order path-signature diagnostics of
+    line-profile morphology. The package exposes the paper-facing quantities
+    used to describe signed area, weighted asymmetry, higher-order modulation,
+    and emission--absorption ordering, plus classical line-profile descriptors
+    for benchmarking and machine-learning workflows.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Imports:
+    stats
+Suggests:
+    ggplot2,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Collate:
+    'algebra-helpers.R'
+    'chen.R'
+    'path.R'
+    'logsig.R'
+    'streamsig.R'
+    'path-features.R'
+    'classical-features.R'
