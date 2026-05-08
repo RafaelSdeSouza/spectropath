@@ -4,6 +4,10 @@
 ^\.Rproj\.user$
 ^path_signatures$
 ^archive$
+^luma$
+^luma\.Rcheck$
+^luma_.*\.tar\.gz$
+^luma_.*\.tgz$
 ^.*\.Rcheck$
 ^.*\.tar\.gz$
 ^.*\.tgz$
