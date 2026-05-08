@@ -1,0 +1,10 @@
+^\.git$
+^\.github$
+^\.DS_Store$
+^\.Rproj\.user$
+^path_signatures$
+^archive$
+^.*\.Rcheck$
+^.*\.tar\.gz$
+^.*\.tgz$
+^Rplots\.pdf$
