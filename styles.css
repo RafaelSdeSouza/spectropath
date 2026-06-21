@@ -285,3 +285,19 @@ figcaption {
     font-size: clamp(2.4rem, 12vw, 4rem);
   }
 }
+.figure-grid {
+  max-width: 760px;
+  margin: 0 auto 3.4rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.image-card {
+  max-width: 230px;
+  margin: 0 auto;
+}
+
+.image-card img {
+  width: 100%;
+  height: auto;
+}
