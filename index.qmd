@@ -19,6 +19,10 @@ Low-order path coordinates for spectral-line profiles. Build a path from an
 ordered coordinate and a measured signal; spectropath returns the notation used
 in the paper directly.
 
+::: {.paper-meta}
+Rafael S. de Souza · companion package for the path-signature line morphology paper
+:::
+
 ::: {.inline-links}
 [Python](python.html)
 [Functions](reference.html)
@@ -51,7 +55,7 @@ path_features(path)
 
 ::::
 
-## Application examples {#figures .section-heading}
+## Astronomical applications {#figures .section-heading}
 
 :::: {.feature-stack}
 
