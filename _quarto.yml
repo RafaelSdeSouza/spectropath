@@ -1,0 +1,30 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "spectropath"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: examples.qmd
+        text: Examples
+      - href: python.qmd
+        text: Python
+      - href: reference.qmd
+        text: Reference
+    right:
+      - href: https://github.com/RafaelSdeSouza/spectropath
+        text: GitHub
+  page-footer:
+    left: "spectropath"
+    right: "Path-signature diagnostics for spectral-line morphology"
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: false
+    code-copy: true
+    smooth-scroll: true

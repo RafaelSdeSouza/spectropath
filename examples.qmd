@@ -1,0 +1,20 @@
+---
+title: "Examples"
+---
+
+# Examples from `Geometry_astronomy`
+
+These are the selected site assets copied out of the paper-material folders
+and kept in a dedicated website asset directory.
+
+## Toy-line comparison panels
+
+![Cropped toy-line comparison strip.](site-assets/toy_case_row1.png)
+
+![Cropped Moffat stress-test strip.](site-assets/moffat_stress_cases_panel_boundary_regions_row1.png)
+
+![Cropped signed emission–absorption ordering strip.](site-assets/signed_emabs_cases_panel_boundary_regions_row1.png)
+
+## IFU kinematic comparison
+
+![Single-galaxy crop from the current kinematic comparison figure.](site-assets/kinematics_col1_full.png)

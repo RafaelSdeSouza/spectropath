@@ -1,0 +1,98 @@
+---
+title: "Python"
+execute:
+  enabled: false
+---
+
+# Python use
+
+`spectropath` is an R package. There is not yet a separate native Python
+package, so the cleanest Python workflow is to call it through `Rscript`.
+If you already use `rpy2`, you can also bridge to the R functions directly.
+
+## Recommended: call `spectropath` from Python with `Rscript`
+
+This keeps the setup simple and works well in notebooks.
+
+```python
+import io
+import subprocess
+import pandas as pd
+
+R_CODE = r'''
+library(spectropath)
+
+u <- seq(-5, 5, length.out = 500)
+f <- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)
+path <- cbind(u, f)
+
+write.csv(path_features(path), stdout(), row.names = FALSE)
+'''
+
+result = subprocess.run(
+    ["Rscript", "-e", R_CODE],
+    check=True,
+    capture_output=True,
+    text=True,
+)
+
+features = pd.read_csv(io.StringIO(result.stdout))
+features
+```
+
+For classical summaries:
+
+```python
+import io
+import subprocess
+import pandas as pd
+
+R_CODE = r'''
+library(spectropath)
+
+u <- seq(-5, 5, length.out = 500)
+f <- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)
+path <- cbind(u, f)
+
+write.csv(classical_features(path), stdout(), row.names = FALSE)
+'''
+
+result = subprocess.run(
+    ["Rscript", "-e", R_CODE],
+    check=True,
+    capture_output=True,
+    text=True,
+)
+
+classical = pd.read_csv(io.StringIO(result.stdout))
+classical
+```
+
+## Optional: direct bridge with `rpy2`
+
+If `rpy2` is installed in your Python environment:
+
+```python
+import numpy as np
+from rpy2.robjects import r
+from rpy2.robjects import numpy2ri
+
+numpy2ri.activate()
+r("library(spectropath)")
+
+u = np.linspace(-5, 5, 500)
+f = np.exp(-0.5 * u**2) + 0.25 * np.exp(-0.5 * ((u - 1.8) / 0.45)**2)
+path = np.column_stack([u, f])
+
+res = r["path_features"](path)
+res
+```
+
+## Downloadable notebook
+
+[Download the example notebook](notebooks/spectropath_python_quickstart.ipynb)
+
+The notebook contains the same two pathways:
+
+- `Rscript` from Python
+- optional `rpy2` bridge

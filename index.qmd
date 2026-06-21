@@ -1,0 +1,123 @@
+---
+title: ""
+page-layout: full
+---
+
+::: {.hero-panel}
+:::: {.columns}
+::: {.column width="58%"}
+#### Ordered paths for spectral-line morphology {.hero-kicker}
+
+# spectropath {.hero-title}
+
+A small R package for turning spectral lines into named geometric diagnostics.
+Treat a line profile as an ordered path \(X = (u, F)\), then compute
+low-order path-signature coordinates that respond to asymmetry, wings,
+shoulders, double peaks, and emission--absorption ordering.
+
+[Quick start](#quick-start){.hero-button .hero-button-primary}
+[Standalone examples](examples.html){.hero-button}
+[Function reference](reference.html){.hero-button}
+[GitHub](https://github.com/RafaelSdeSouza/spectropath){.hero-button}
+:::
+
+::: {.column width="42%"}
+::: {.output-card}
+Minimal output
+
+```r
+library(spectropath)
+
+u <- seq(-5, 5, length.out = 500)
+f <- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)
+path <- cbind(u, f)
+
+path_features(path)
+#      p2  p_pm    p3u    p3F    p4F    p4T
+# -0.3133 0.000 -0.0169 -0.1736 0.4534 0.0132
+```
+:::
+:::
+::::
+:::
+
+## What spectropath returns
+
+The package exposes the paper-facing coordinates and a compact set of
+classical line-profile summaries for benchmarking.
+
+| Output | Interpretation |
+|---|---|
+| `p2` | signed velocity--flux area |
+| `p3u` | where asymmetry lies along the ordered coordinate |
+| `p3F` | whether asymmetry is concentrated in bright or faint parts of the line |
+| `p4F` | higher-order flux modulation |
+| `p4T` | twist-like higher-order structure |
+| `p_pm` | emission--absorption ordering |
+
+## Quick start {#quick-start}
+
+Install from GitHub:
+
+```r
+install.packages("remotes")
+remotes::install_github("RafaelSdeSouza/spectropath")
+library(spectropath)
+```
+
+From a local checkout:
+
+```r
+remotes::install_local("/Users/rd23aag/Documents/GitHub/spectropath")
+```
+
+Compute both path and classical summaries from the same line profile:
+
+```r
+u <- seq(-5, 5, length.out = 500)
+f <- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)
+path <- cbind(u, f)
+
+path_features(path)
+classical_features(path)
+```
+
+| `path_features(path)` | Value |
+|---|---:|
+| `p2` | `-0.3133` |
+| `p_pm` | `0.0000` |
+| `p3u` | `-0.0169` |
+| `p3F` | `-0.1736` |
+| `p4F` | `0.4534` |
+| `p4T` | `0.0132` |
+
+| `classical_features(path)` | Value |
+|---|---:|
+| `line_flux` | `1.2500` |
+| `equivalent_width` | `1.2500` |
+| `peak_flux` | `0.3990` |
+| `fwhm` | `3.3267` |
+| `w80` | `3.0746` |
+| `centroid` | `0.3600` |
+| `line_dispersion` | `1.1657` |
+| `skewness` | `-0.0815` |
+| `kurtosis_excess` | `-0.6044` |
+
+## Two visual anchors
+
+:::: {.columns}
+::: {.column width="66%"}
+![Cropped toy-line comparison strip from the current repository figures.](site-assets/toy_case_row1.png)
+:::
+::: {.column width="34%"}
+![Single-galaxy kinematic crop from the current repository figures.](site-assets/kinematics_col1_maps.png)
+:::
+::::
+
+These are the repository-local assets the site actually uses. The first shows
+the profile-comparison logic used in the paper discussion of line-shape
+discrimination. The second is a cropped IFU-facing kinematic example, kept
+narrower so the homepage stays clean instead of showing the full multi-panel
+block.
+
+More examples live on the [Examples](examples.html) page.
