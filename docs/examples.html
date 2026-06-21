@@ -25,11 +25,6 @@ ul.task-list li input[type="checkbox"] {
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -42,18 +37,6 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-a8976c3e89df70b272bdfba3d2fda974.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -85,7 +68,6 @@ ul.task-list li input[type="checkbox"] {
     <span class="navbar-title">spectropath</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -147,41 +129,41 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="examples-from-geometry_astronomy" class="level1">
-<h1>Examples from <code>Geometry_astronomy</code></h1>
-<p>These are the selected site assets copied out of the paper-material folders and kept in a dedicated website asset directory.</p>
-<section id="toy-line-comparison-panels" class="level2">
-<h2 class="anchored" data-anchor-id="toy-line-comparison-panels">Toy-line comparison panels</h2>
+<section id="examples" class="level1">
+<h1>Examples</h1>
+<p>This page collects a small set of paper-aligned figures used on the site. The goal is not to reproduce every panel, but to keep a few clear visual anchors for the package.</p>
+<section id="toy-line-profiles" class="level2 example-block">
+<h2 class="anchored" data-anchor-id="toy-line-profiles">Toy line profiles</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="site-assets/toy_case_row1.png" class="img-fluid figure-img"></p>
-<figcaption>Cropped toy-line comparison strip.</figcaption>
+<figcaption>Toy profile comparison strip.</figcaption>
 </figure>
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="site-assets/moffat_stress_cases_panel_boundary_regions_row1.png" class="img-fluid figure-img"></p>
-<figcaption>Cropped Moffat stress-test strip.</figcaption>
-</figure>
-</div>
+<p>The mock-profile experiments compare visually distinct line shapes in settings where classical summaries can become degenerate, while low-order path coordinates remain sensitive to ordered morphology.</p>
+</section>
+<section id="mixed-emissionabsorption-profiles" class="level2 example-block">
+<h2 class="anchored" data-anchor-id="mixed-emissionabsorption-profiles">Mixed emission–absorption profiles</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="site-assets/signed_emabs_cases_panel_boundary_regions_row1.png" class="img-fluid figure-img"></p>
-<figcaption>Cropped signed emission–absorption ordering strip.</figcaption>
+<figcaption>Signed emission-absorption ordering strip.</figcaption>
 </figure>
 </div>
+<p>For mixed-sign profiles, the emission–absorption ordering coordinate (p_{}) provides a compact way to distinguish profiles that differ mainly in the order in which emission and absorption appear along the spectral axis.</p>
 </section>
-<section id="ifu-kinematic-comparison" class="level2">
-<h2 class="anchored" data-anchor-id="ifu-kinematic-comparison">IFU kinematic comparison</h2>
+<section id="ifu-kinematic-example" class="level2 example-block">
+<h2 class="anchored" data-anchor-id="ifu-kinematic-example">IFU kinematic example</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="site-assets/kinematics_col1_full.png" class="img-fluid figure-img"></p>
-<figcaption>Single-galaxy crop from the current kinematic comparison figure.</figcaption>
+<figcaption>Single-galaxy IFU kinematic crop.</figcaption>
 </figure>
 </div>
-
-
+<p>The IFU example shows how path-derived features can be used as a segmentation space before estimating representative velocities from stacked spectra.</p>
 </section>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -194,68 +176,6 @@ ul.task-list li input[type="checkbox"] {
       icon: icon
     };
     anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
-    }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
-    }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
-    });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
         var filterRegex = new RegExp('/' + window.location.host + '/');

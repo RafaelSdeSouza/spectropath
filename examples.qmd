@@ -2,19 +2,37 @@
 title: "Examples"
 ---
 
-# Examples from `Geometry_astronomy`
+# Examples
 
-These are the selected site assets copied out of the paper-material folders
-and kept in a dedicated website asset directory.
+This page collects a small set of paper-aligned figures used on the site. The
+goal is not to reproduce every panel, but to keep a few clear visual anchors
+for the package.
 
-## Toy-line comparison panels
+::: {.example-block}
+## Toy line profiles
 
-![Cropped toy-line comparison strip.](site-assets/toy_case_row1.png)
+![Toy profile comparison strip.](site-assets/toy_case_row1.png)
 
-![Cropped Moffat stress-test strip.](site-assets/moffat_stress_cases_panel_boundary_regions_row1.png)
+The mock-profile experiments compare visually distinct line shapes in settings
+where classical summaries can become degenerate, while low-order path
+coordinates remain sensitive to ordered morphology.
+:::
 
-![Cropped signed emission–absorption ordering strip.](site-assets/signed_emabs_cases_panel_boundary_regions_row1.png)
+::: {.example-block}
+## Mixed emission--absorption profiles
 
-## IFU kinematic comparison
+![Signed emission-absorption ordering strip.](site-assets/signed_emabs_cases_panel_boundary_regions_row1.png)
 
-![Single-galaxy crop from the current kinematic comparison figure.](site-assets/kinematics_col1_full.png)
+For mixed-sign profiles, the emission--absorption ordering coordinate
+\(p_{\pm}\) provides a compact way to distinguish profiles that differ mainly
+in the order in which emission and absorption appear along the spectral axis.
+:::
+
+::: {.example-block}
+## IFU kinematic example
+
+![Single-galaxy IFU kinematic crop.](site-assets/kinematics_col1_full.png)
+
+The IFU example shows how path-derived features can be used as a segmentation
+space before estimating representative velocities from stacked spectra.
+:::

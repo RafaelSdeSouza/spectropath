@@ -32,70 +32,70 @@
     "href": "python.html",
     "title": "Python",
     "section": "",
-    "text": "spectropath is an R package. There is not yet a separate native Python package, so the cleanest Python workflow is to call it through Rscript. If you already use rpy2, you can also bridge to the R functions directly.\n\n\nThis keeps the setup simple and works well in notebooks.\nimport io\nimport subprocess\nimport pandas as pd\n\nR_CODE = r'''\nlibrary(spectropath)\n\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\n\nwrite.csv(path_features(path), stdout(), row.names = FALSE)\n'''\n\nresult = subprocess.run(\n    [\"Rscript\", \"-e\", R_CODE],\n    check=True,\n    capture_output=True,\n    text=True,\n)\n\nfeatures = pd.read_csv(io.StringIO(result.stdout))\nfeatures\nFor classical summaries:\nimport io\nimport subprocess\nimport pandas as pd\n\nR_CODE = r'''\nlibrary(spectropath)\n\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\n\nwrite.csv(classical_features(path), stdout(), row.names = FALSE)\n'''\n\nresult = subprocess.run(\n    [\"Rscript\", \"-e\", R_CODE],\n    check=True,\n    capture_output=True,\n    text=True,\n)\n\nclassical = pd.read_csv(io.StringIO(result.stdout))\nclassical\n\n\n\nIf rpy2 is installed in your Python environment:\nimport numpy as np\nfrom rpy2.robjects import r\nfrom rpy2.robjects import numpy2ri\n\nnumpy2ri.activate()\nr(\"library(spectropath)\")\n\nu = np.linspace(-5, 5, 500)\nf = np.exp(-0.5 * u**2) + 0.25 * np.exp(-0.5 * ((u - 1.8) / 0.45)**2)\npath = np.column_stack([u, f])\n\nres = r[\"path_features\"](path)\nres\n\n\n\nDownload the example notebook\nThe notebook contains the same two pathways:\n\nRscript from Python\noptional rpy2 bridge"
+    "text": "spectropath is an R package. If your analysis stack is in Python, the cleanest option is usually to call it through Rscript and read the result back into Python.\n\n\nimport subprocess\n\ncode = r'''\nlibrary(spectropath)\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\nprint(path_features(path))\n'''\n\nsubprocess.run([\"Rscript\", \"-e\", code], check=True)\n\n\n\nIf you already use rpy2, you can call the same functions directly from a Python session.\nimport numpy as np\nfrom rpy2 import robjects\n\nrobjects.r(\"library(spectropath)\")\nrobjects.r(\"\"\"\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\nprint(path_features(path))\n\"\"\")\nA small notebook version is included here:\nDownload the example notebook"
   },
   {
-    "objectID": "python.html#recommended-call-spectropath-from-python-with-rscript",
-    "href": "python.html#recommended-call-spectropath-from-python-with-rscript",
+    "objectID": "python.html#through-subprocess",
+    "href": "python.html#through-subprocess",
     "title": "Python",
     "section": "",
-    "text": "This keeps the setup simple and works well in notebooks.\nimport io\nimport subprocess\nimport pandas as pd\n\nR_CODE = r'''\nlibrary(spectropath)\n\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\n\nwrite.csv(path_features(path), stdout(), row.names = FALSE)\n'''\n\nresult = subprocess.run(\n    [\"Rscript\", \"-e\", R_CODE],\n    check=True,\n    capture_output=True,\n    text=True,\n)\n\nfeatures = pd.read_csv(io.StringIO(result.stdout))\nfeatures\nFor classical summaries:\nimport io\nimport subprocess\nimport pandas as pd\n\nR_CODE = r'''\nlibrary(spectropath)\n\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\n\nwrite.csv(classical_features(path), stdout(), row.names = FALSE)\n'''\n\nresult = subprocess.run(\n    [\"Rscript\", \"-e\", R_CODE],\n    check=True,\n    capture_output=True,\n    text=True,\n)\n\nclassical = pd.read_csv(io.StringIO(result.stdout))\nclassical"
+    "text": "import subprocess\n\ncode = r'''\nlibrary(spectropath)\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\nprint(path_features(path))\n'''\n\nsubprocess.run([\"Rscript\", \"-e\", code], check=True)"
   },
   {
-    "objectID": "python.html#optional-direct-bridge-with-rpy2",
-    "href": "python.html#optional-direct-bridge-with-rpy2",
+    "objectID": "python.html#through-rpy2",
+    "href": "python.html#through-rpy2",
     "title": "Python",
     "section": "",
-    "text": "If rpy2 is installed in your Python environment:\nimport numpy as np\nfrom rpy2.robjects import r\nfrom rpy2.robjects import numpy2ri\n\nnumpy2ri.activate()\nr(\"library(spectropath)\")\n\nu = np.linspace(-5, 5, 500)\nf = np.exp(-0.5 * u**2) + 0.25 * np.exp(-0.5 * ((u - 1.8) / 0.45)**2)\npath = np.column_stack([u, f])\n\nres = r[\"path_features\"](path)\nres"
-  },
-  {
-    "objectID": "python.html#downloadable-notebook",
-    "href": "python.html#downloadable-notebook",
-    "title": "Python",
-    "section": "",
-    "text": "Download the example notebook\nThe notebook contains the same two pathways:\n\nRscript from Python\noptional rpy2 bridge"
+    "text": "If you already use rpy2, you can call the same functions directly from a Python session.\nimport numpy as np\nfrom rpy2 import robjects\n\nrobjects.r(\"library(spectropath)\")\nrobjects.r(\"\"\"\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\nprint(path_features(path))\n\"\"\")\nA small notebook version is included here:\nDownload the example notebook"
   },
   {
     "objectID": "examples.html",
     "href": "examples.html",
     "title": "Examples",
     "section": "",
-    "text": "These are the selected site assets copied out of the paper-material folders and kept in a dedicated website asset directory.\n\n\n\n\n\nCropped toy-line comparison strip.\n\n\n\n\n\nCropped Moffat stress-test strip.\n\n\n\n\n\nCropped signed emission–absorption ordering strip.\n\n\n\n\n\n\n\n\nSingle-galaxy crop from the current kinematic comparison figure."
+    "text": "This page collects a small set of paper-aligned figures used on the site. The goal is not to reproduce every panel, but to keep a few clear visual anchors for the package.\n\n\n\n\n\nToy profile comparison strip.\n\n\nThe mock-profile experiments compare visually distinct line shapes in settings where classical summaries can become degenerate, while low-order path coordinates remain sensitive to ordered morphology.\n\n\n\n\n\n\nSigned emission-absorption ordering strip.\n\n\nFor mixed-sign profiles, the emission–absorption ordering coordinate (p_{}) provides a compact way to distinguish profiles that differ mainly in the order in which emission and absorption appear along the spectral axis.\n\n\n\n\n\n\nSingle-galaxy IFU kinematic crop.\n\n\nThe IFU example shows how path-derived features can be used as a segmentation space before estimating representative velocities from stacked spectra."
   },
   {
-    "objectID": "examples.html#toy-line-comparison-panels",
-    "href": "examples.html#toy-line-comparison-panels",
+    "objectID": "examples.html#toy-line-profiles",
+    "href": "examples.html#toy-line-profiles",
     "title": "Examples",
     "section": "",
-    "text": "Cropped toy-line comparison strip.\n\n\n\n\n\nCropped Moffat stress-test strip.\n\n\n\n\n\nCropped signed emission–absorption ordering strip."
+    "text": "Toy profile comparison strip.\n\n\nThe mock-profile experiments compare visually distinct line shapes in settings where classical summaries can become degenerate, while low-order path coordinates remain sensitive to ordered morphology."
   },
   {
-    "objectID": "examples.html#ifu-kinematic-comparison",
-    "href": "examples.html#ifu-kinematic-comparison",
+    "objectID": "examples.html#mixed-emissionabsorption-profiles",
+    "href": "examples.html#mixed-emissionabsorption-profiles",
     "title": "Examples",
     "section": "",
-    "text": "Single-galaxy crop from the current kinematic comparison figure."
+    "text": "Signed emission-absorption ordering strip.\n\n\nFor mixed-sign profiles, the emission–absorption ordering coordinate (p_{}) provides a compact way to distinguish profiles that differ mainly in the order in which emission and absorption appear along the spectral axis."
+  },
+  {
+    "objectID": "examples.html#ifu-kinematic-example",
+    "href": "examples.html#ifu-kinematic-example",
+    "title": "Examples",
+    "section": "",
+    "text": "Single-galaxy IFU kinematic crop.\n\n\nThe IFU example shows how path-derived features can be used as a segmentation space before estimating representative velocities from stacked spectra."
   },
   {
     "objectID": "reference.html",
     "href": "reference.html",
     "title": "Reference",
     "section": "",
-    "text": "The package keeps the public surface small on purpose.\n\n\n\n\n\n\n\n\n\nFunction\nPurpose\n\n\n\n\npath_features(path, depth = 4)\nReturn the paper-facing path coordinates\n\n\nclassical_features(path)\nReturn classical line-profile summaries\n\n\nas_spectral_path(u, F)\nBuild a path matrix from ordered coordinate and signal\n\n\n\n\n\n\n\n\n\n\n\n\n\nOutput column\nInterpretation\n\n\n\n\np2\nsigned velocity–flux area\n\n\np3u\nlocation of asymmetry along the ordered coordinate\n\n\np3F\nwhether asymmetry is concentrated in bright or faint parts of the line\n\n\np4F\nhigher-order flux modulation\n\n\np4T\ntwist-like higher-order structure\n\n\np_pm\nemission–absorption ordering\n\n\n\n\n\n\nlibrary(spectropath)\n\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\n\npath_features(path)\nclassical_features(path)\n\n\n\nspectropath is the narrow, paper-facing package. It is meant for ordered line-profile diagnostics with stable notation, rather than the broader exploratory feature space that existed in earlier experiments."
+    "text": "The public API is intentionally small.\n\n\n\n\npath_features(path, depth = 4)\nReturns the paper-facing path coordinates.\n\n\nclassical_features(path)\nReturns classical line-profile summaries used for comparison.\n\n\nas_spectral_path(u, F)\nBuilds a path matrix from an ordered coordinate and a measured signal.\n\n\n\n\n\n\n\np2\nSigned velocity–flux area.\n\n\np3u\nLocation of asymmetry along the ordered coordinate.\n\n\np3F\nWhether asymmetry is concentrated in bright or faint parts of the line.\n\n\np4F\nHigher-order flux modulation.\n\n\np4T\nTwist-like higher-order structure.\n\n\np_pm\nEmission–absorption ordering.\n\n\n\n\n\nlibrary(spectropath)\n\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\n\npath_features(path)\nclassical_features(path)"
   },
   {
-    "objectID": "reference.html#main-entry-points",
-    "href": "reference.html#main-entry-points",
+    "objectID": "reference.html#main-functions",
+    "href": "reference.html#main-functions",
     "title": "Reference",
     "section": "",
-    "text": "Function\nPurpose\n\n\n\n\npath_features(path, depth = 4)\nReturn the paper-facing path coordinates\n\n\nclassical_features(path)\nReturn classical line-profile summaries\n\n\nas_spectral_path(u, F)\nBuild a path matrix from ordered coordinate and signal"
+    "text": "path_features(path, depth = 4)\nReturns the paper-facing path coordinates.\n\n\nclassical_features(path)\nReturns classical line-profile summaries used for comparison.\n\n\nas_spectral_path(u, F)\nBuilds a path matrix from an ordered coordinate and a measured signal."
   },
   {
-    "objectID": "reference.html#paper-notation",
-    "href": "reference.html#paper-notation",
+    "objectID": "reference.html#output-columns",
+    "href": "reference.html#output-columns",
     "title": "Reference",
     "section": "",
-    "text": "Output column\nInterpretation\n\n\n\n\np2\nsigned velocity–flux area\n\n\np3u\nlocation of asymmetry along the ordered coordinate\n\n\np3F\nwhether asymmetry is concentrated in bright or faint parts of the line\n\n\np4F\nhigher-order flux modulation\n\n\np4T\ntwist-like higher-order structure\n\n\np_pm\nemission–absorption ordering"
+    "text": "p2\nSigned velocity–flux area.\n\n\np3u\nLocation of asymmetry along the ordered coordinate.\n\n\np3F\nWhether asymmetry is concentrated in bright or faint parts of the line.\n\n\np4F\nHigher-order flux modulation.\n\n\np4T\nTwist-like higher-order structure.\n\n\np_pm\nEmission–absorption ordering."
   },
   {
     "objectID": "reference.html#minimal-workflow",
@@ -105,38 +105,31 @@
     "text": "library(spectropath)\n\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\n\npath_features(path)\nclassical_features(path)"
   },
   {
-    "objectID": "reference.html#scope",
-    "href": "reference.html#scope",
-    "title": "Reference",
-    "section": "",
-    "text": "spectropath is the narrow, paper-facing package. It is meant for ordered line-profile diagnostics with stable notation, rather than the broader exploratory feature space that existed in earlier experiments."
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "spectropath",
     "section": "",
-    "text": "A small R package for turning spectral lines into named geometric diagnostics. Treat a line profile as an ordered path (X = (u, F)), then compute low-order path-signature coordinates that respond to asymmetry, wings, shoulders, double peaks, and emission–absorption ordering.\nQuick start Standalone examples Function reference GitHub\n\n\n\nMinimal output\nlibrary(spectropath)\n\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\n\npath_features(path)\n#      p2  p_pm    p3u    p3F    p4F    p4T\n# -0.3133 0.000 -0.0169 -0.1736 0.4534 0.0132"
+    "text": "Path-signature diagnostics for spectral-line morphology\n\n\n\nspectropath is a small R package built around the notation used in the paper. It treats a spectral profile as an ordered path (X=(u,F)) and returns a compact set of low-order coordinates for asymmetry, core-versus-wing structure, higher-order modulation, and emission–absorption ordering.\nIt is meant for the situations where line shape matters: blue and red wings, shoulders, broad bases, double peaks, and mixed emission–absorption structure.\n\nQuick start\nExamples\nReference\nGitHub\n\n\n\n\nExample\nlibrary(spectropath)\n\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\n\npath_features(path)\n      p2   p_pm    p3u    p3F    p4F    p4T\n -0.3133 0.000 -0.0169 -0.1736 0.4534 0.0132\n\n\n\n\n\n\n\n\n\nToy profile comparison strip.\n\n\n\nToy line profiles used to compare classical and path-based descriptors.\n\n\n\n\n\n\nSigned emission-absorption ordering strip.\n\n\n\nMixed-sign profiles where emission–absorption ordering becomes relevant.\n\n\n\n\n\n\nSingle-galaxy IFU kinematic crop.\n\n\n\nPath-selected regions in an IFU cube, summarized as a compact kinematic map.\n\n\n\n\n\n\n\n\np2\nSigned velocity–flux area.\n\n\np3u\nLocation of asymmetry along the ordered coordinate.\n\n\np3F\nWhether asymmetry is concentrated in bright or faint parts of the line.\n\n\np4F\nHigher-order flux modulation.\n\n\np4T\nTwist-like higher-order structure.\n\n\np_pm\nEmission–absorption ordering.\n\n\n\n\n\n\n\nInstall\ninstall.packages(\"remotes\")\nremotes::install_github(\"RafaelSdeSouza/spectropath\")\nlibrary(spectropath)\n\n\nCompute\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\n\npath_features(path)\nclassical_features(path)\n\n\nFor a larger set of paper figures and small reproducible examples, see the Examples page."
   },
   {
-    "objectID": "index.html#what-spectropath-returns",
-    "href": "index.html#what-spectropath-returns",
+    "objectID": "index.html#selected-figures",
+    "href": "index.html#selected-figures",
     "title": "spectropath",
-    "section": "What spectropath returns",
-    "text": "What spectropath returns\nThe package exposes the paper-facing coordinates and a compact set of classical line-profile summaries for benchmarking.\n\n\n\n\n\n\n\nOutput\nInterpretation\n\n\n\n\np2\nsigned velocity–flux area\n\n\np3u\nwhere asymmetry lies along the ordered coordinate\n\n\np3F\nwhether asymmetry is concentrated in bright or faint parts of the line\n\n\np4F\nhigher-order flux modulation\n\n\np4T\ntwist-like higher-order structure\n\n\np_pm\nemission–absorption ordering"
+    "section": "",
+    "text": "Toy profile comparison strip.\n\n\n\nToy line profiles used to compare classical and path-based descriptors.\n\n\n\n\n\n\nSigned emission-absorption ordering strip.\n\n\n\nMixed-sign profiles where emission–absorption ordering becomes relevant.\n\n\n\n\n\n\nSingle-galaxy IFU kinematic crop.\n\n\n\nPath-selected regions in an IFU cube, summarized as a compact kinematic map."
+  },
+  {
+    "objectID": "index.html#paper-notation",
+    "href": "index.html#paper-notation",
+    "title": "spectropath",
+    "section": "",
+    "text": "p2\nSigned velocity–flux area.\n\n\np3u\nLocation of asymmetry along the ordered coordinate.\n\n\np3F\nWhether asymmetry is concentrated in bright or faint parts of the line.\n\n\np4F\nHigher-order flux modulation.\n\n\np4T\nTwist-like higher-order structure.\n\n\np_pm\nEmission–absorption ordering."
   },
   {
     "objectID": "index.html#quick-start",
     "href": "index.html#quick-start",
     "title": "spectropath",
-    "section": "Quick start",
-    "text": "Quick start\nInstall from GitHub:\ninstall.packages(\"remotes\")\nremotes::install_github(\"RafaelSdeSouza/spectropath\")\nlibrary(spectropath)\nFrom a local checkout:\nremotes::install_local(\"/Users/rd23aag/Documents/GitHub/spectropath\")\nCompute both path and classical summaries from the same line profile:\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\n\npath_features(path)\nclassical_features(path)\n\n\n\npath_features(path)\nValue\n\n\n\n\np2\n-0.3133\n\n\np_pm\n0.0000\n\n\np3u\n-0.0169\n\n\np3F\n-0.1736\n\n\np4F\n0.4534\n\n\np4T\n0.0132\n\n\n\n\n\n\nclassical_features(path)\nValue\n\n\n\n\nline_flux\n1.2500\n\n\nequivalent_width\n1.2500\n\n\npeak_flux\n0.3990\n\n\nfwhm\n3.3267\n\n\nw80\n3.0746\n\n\ncentroid\n0.3600\n\n\nline_dispersion\n1.1657\n\n\nskewness\n-0.0815\n\n\nkurtosis_excess\n-0.6044"
-  },
-  {
-    "objectID": "index.html#two-visual-anchors",
-    "href": "index.html#two-visual-anchors",
-    "title": "spectropath",
-    "section": "Two visual anchors",
-    "text": "Two visual anchors\n\n\n\n\n\nCropped toy-line comparison strip from the current repository figures.\n\n\n\n\n\n\nSingle-galaxy kinematic crop from the current repository figures.\n\n\n\n\nThese are the repository-local assets the site actually uses. The first shows the profile-comparison logic used in the paper discussion of line-shape discrimination. The second is a cropped IFU-facing kinematic example, kept narrower so the homepage stays clean instead of showing the full multi-panel block.\nMore examples live on the Examples page."
+    "section": "",
+    "text": "Install\ninstall.packages(\"remotes\")\nremotes::install_github(\"RafaelSdeSouza/spectropath\")\nlibrary(spectropath)\n\n\nCompute\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\n\npath_features(path)\nclassical_features(path)\n\n\nFor a larger set of paper figures and small reproducible examples, see the Examples page."
   }
 ]

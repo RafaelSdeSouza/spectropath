@@ -1,98 +1,47 @@
 ---
 title: "Python"
-execute:
-  enabled: false
 ---
 
-# Python use
+# Python
 
-`spectropath` is an R package. There is not yet a separate native Python
-package, so the cleanest Python workflow is to call it through `Rscript`.
-If you already use `rpy2`, you can also bridge to the R functions directly.
+`spectropath` is an R package. If your analysis stack is in Python, the
+cleanest option is usually to call it through `Rscript` and read the result
+back into Python.
 
-## Recommended: call `spectropath` from Python with `Rscript`
-
-This keeps the setup simple and works well in notebooks.
+## Through `subprocess`
 
 ```python
-import io
 import subprocess
-import pandas as pd
 
-R_CODE = r'''
+code = r'''
 library(spectropath)
-
 u <- seq(-5, 5, length.out = 500)
 f <- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)
 path <- cbind(u, f)
-
-write.csv(path_features(path), stdout(), row.names = FALSE)
+print(path_features(path))
 '''
 
-result = subprocess.run(
-    ["Rscript", "-e", R_CODE],
-    check=True,
-    capture_output=True,
-    text=True,
-)
-
-features = pd.read_csv(io.StringIO(result.stdout))
-features
+subprocess.run(["Rscript", "-e", code], check=True)
 ```
 
-For classical summaries:
+## Through `rpy2`
 
-```python
-import io
-import subprocess
-import pandas as pd
-
-R_CODE = r'''
-library(spectropath)
-
-u <- seq(-5, 5, length.out = 500)
-f <- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)
-path <- cbind(u, f)
-
-write.csv(classical_features(path), stdout(), row.names = FALSE)
-'''
-
-result = subprocess.run(
-    ["Rscript", "-e", R_CODE],
-    check=True,
-    capture_output=True,
-    text=True,
-)
-
-classical = pd.read_csv(io.StringIO(result.stdout))
-classical
-```
-
-## Optional: direct bridge with `rpy2`
-
-If `rpy2` is installed in your Python environment:
+If you already use `rpy2`, you can call the same functions directly from a
+Python session.
 
 ```python
 import numpy as np
-from rpy2.robjects import r
-from rpy2.robjects import numpy2ri
+from rpy2 import robjects
 
-numpy2ri.activate()
-r("library(spectropath)")
-
-u = np.linspace(-5, 5, 500)
-f = np.exp(-0.5 * u**2) + 0.25 * np.exp(-0.5 * ((u - 1.8) / 0.45)**2)
-path = np.column_stack([u, f])
-
-res = r["path_features"](path)
-res
+robjects.r("library(spectropath)")
+robjects.r("""
+u <- seq(-5, 5, length.out = 500)
+f <- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)
+path <- cbind(u, f)
+print(path_features(path))
+""")
 ```
 
-## Downloadable notebook
+A small notebook version is included here:
 
 [Download the example notebook](notebooks/spectropath_python_quickstart.ipynb)
-
-The notebook contains the same two pathways:
-
-- `Rscript` from Python
-- optional `rpy2` bridge

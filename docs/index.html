@@ -60,11 +60,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -77,18 +72,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-a8976c3e89df70b272bdfba3d2fda974.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -120,7 +103,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <span class="navbar-title">spectropath</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -166,195 +148,128 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div class="hero-panel">
-<div class="columns">
-<div class="column" style="width:58%;">
-<section id="ordered-paths-for-spectral-line-morphology" class="level4 hero-kicker">
-<h4 class="hero-kicker anchored" data-anchor-id="ordered-paths-for-spectral-line-morphology">Ordered paths for spectral-line morphology</h4>
+<div class="home-shell">
+<div class="hero-grid">
+<div class="hero-copy">
+<div class="section-label">
+<p>Path-signature diagnostics for spectral-line morphology</p>
+</div>
+<section id="spectropath" class="level1 hero-name">
+<h1 class="hero-name">spectropath</h1>
+<p><code>spectropath</code> is a small R package built around the notation used in the paper. It treats a spectral profile as an ordered path (X=(u,F)) and returns a compact set of low-order coordinates for asymmetry, core-versus-wing structure, higher-order modulation, and emission–absorption ordering.</p>
+<p>It is meant for the situations where line shape matters: blue and red wings, shoulders, broad bases, double peaks, and mixed emission–absorption structure.</p>
+<div class="inline-links">
+<p><a href="#quick-start">Quick start</a><br>
+<a href="examples.html">Examples</a><br>
+<a href="reference.html">Reference</a><br>
+<a href="https://github.com/RafaelSdeSouza/spectropath">GitHub</a></p>
+</div>
 </section>
-<section id="spectropath" class="level1 hero-title">
-<h1 class="hero-title">spectropath</h1>
-<p>A small R package for turning spectral lines into named geometric diagnostics. Treat a line profile as an ordered path (X = (u, F)), then compute low-order path-signature coordinates that respond to asymmetry, wings, shoulders, double peaks, and emission–absorption ordering.</p>
-<p><a href="#quick-start" class="hero-button hero-button-primary">Quick start</a> <a href="examples.html" class="hero-button">Standalone examples</a> <a href="reference.html" class="hero-button">Function reference</a> <a href="https://github.com/RafaelSdeSouza/spectropath" class="hero-button">GitHub</a></p>
-</section>
-</div><div class="column" style="width:42%;">
-<div class="output-card">
-<p>Minimal output</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spectropath)</span>
+</div>
+<div class="code-card">
+<p>Example</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spectropath)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">500</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(u, <span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span> <span class="fl">0.25</span> <span class="sc">*</span> <span class="fu">dnorm</span>(u, <span class="fl">1.8</span>, <span class="fl">0.45</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">cbind</span>(u, f)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">path_features</span>(path)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#      p2  p_pm    p3u    p3F    p4F    p4T</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># -0.3133 0.000 -0.0169 -0.1736 0.4534 0.0132</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">path_features</span>(path)</span></code></pre></div>
+<pre class="text"><code>      p2   p_pm    p3u    p3F    p4F    p4T
+ -0.3133 0.000 -0.0169 -0.1736 0.4534 0.0132</code></pre>
+</div>
+</div>
+<section id="selected-figures" class="level2 section-heading">
+<h2 class="section-heading anchored" data-anchor-id="selected-figures">Selected figures</h2>
+<div class="figure-grid">
+<div class="image-card">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="site-assets/toy_case_row1.png" class="img-fluid figure-img"></p>
+<figcaption>Toy profile comparison strip.</figcaption>
+</figure>
+</div>
+<div class="card-caption">
+<p>Toy line profiles used to compare classical and path-based descriptors.</p>
+</div>
+</div>
+<div class="image-card">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="site-assets/signed_emabs_cases_panel_boundary_regions_row1.png" class="img-fluid figure-img"></p>
+<figcaption>Signed emission-absorption ordering strip.</figcaption>
+</figure>
+</div>
+<div class="card-caption">
+<p>Mixed-sign profiles where emission–absorption ordering becomes relevant.</p>
+</div>
+</div>
+<div class="image-card">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="site-assets/kinematics_col1_maps.png" class="img-fluid figure-img"></p>
+<figcaption>Single-galaxy IFU kinematic crop.</figcaption>
+</figure>
+</div>
+<div class="card-caption">
+<p>Path-selected regions in an IFU cube, summarized as a compact kinematic map.</p>
 </div>
 </div>
 </div>
-</div>
-<section id="what-spectropath-returns" class="level2">
-<h2 class="anchored" data-anchor-id="what-spectropath-returns">What spectropath returns</h2>
-<p>The package exposes the paper-facing coordinates and a compact set of classical line-profile summaries for benchmarking.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Output</th>
-<th>Interpretation</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>p2</code></td>
-<td>signed velocity–flux area</td>
-</tr>
-<tr class="even">
-<td><code>p3u</code></td>
-<td>where asymmetry lies along the ordered coordinate</td>
-</tr>
-<tr class="odd">
-<td><code>p3F</code></td>
-<td>whether asymmetry is concentrated in bright or faint parts of the line</td>
-</tr>
-<tr class="even">
-<td><code>p4F</code></td>
-<td>higher-order flux modulation</td>
-</tr>
-<tr class="odd">
-<td><code>p4T</code></td>
-<td>twist-like higher-order structure</td>
-</tr>
-<tr class="even">
-<td><code>p_pm</code></td>
-<td>emission–absorption ordering</td>
-</tr>
-</tbody>
-</table>
 </section>
-<section id="quick-start" class="level2">
-<h2 class="anchored" data-anchor-id="quick-start">Quick start</h2>
-<p>Install from GitHub:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"RafaelSdeSouza/spectropath"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spectropath)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>From a local checkout:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_local</span>(<span class="st">"/Users/rd23aag/Documents/GitHub/spectropath"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Compute both path and classical summaries from the same line profile:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">500</span>)</span>
+<section id="paper-notation" class="level2 section-heading">
+<h2 class="section-heading anchored" data-anchor-id="paper-notation">Paper notation</h2>
+<div class="notation-grid">
+<div class="notation-item">
+<p><code>p2</code></p>
+<p>Signed velocity–flux area.</p>
+</div>
+<div class="notation-item">
+<p><code>p3u</code></p>
+<p>Location of asymmetry along the ordered coordinate.</p>
+</div>
+<div class="notation-item">
+<p><code>p3F</code></p>
+<p>Whether asymmetry is concentrated in bright or faint parts of the line.</p>
+</div>
+<div class="notation-item">
+<p><code>p4F</code></p>
+<p>Higher-order flux modulation.</p>
+</div>
+<div class="notation-item">
+<p><code>p4T</code></p>
+<p>Twist-like higher-order structure.</p>
+</div>
+<div class="notation-item">
+<p><code>p_pm</code></p>
+<p>Emission–absorption ordering.</p>
+</div>
+</div>
+</section>
+<section id="quick-start" class="level2 section-heading">
+<h2 class="section-heading anchored" data-anchor-id="quick-start">Quick start</h2>
+<div class="quick-grid">
+<div class="quick-card">
+<p>Install</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"RafaelSdeSouza/spectropath"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spectropath)</span></code></pre></div>
+</div>
+<div class="quick-card">
+<p>Compute</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">500</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(u, <span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span> <span class="fl">0.25</span> <span class="sc">*</span> <span class="fu">dnorm</span>(u, <span class="fl">1.8</span>, <span class="fl">0.45</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">cbind</span>(u, f)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">path_features</span>(path)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">classical_features</span>(path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><code>path_features(path)</code></th>
-<th style="text-align: right;">Value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>p2</code></td>
-<td style="text-align: right;"><code>-0.3133</code></td>
-</tr>
-<tr class="even">
-<td><code>p_pm</code></td>
-<td style="text-align: right;"><code>0.0000</code></td>
-</tr>
-<tr class="odd">
-<td><code>p3u</code></td>
-<td style="text-align: right;"><code>-0.0169</code></td>
-</tr>
-<tr class="even">
-<td><code>p3F</code></td>
-<td style="text-align: right;"><code>-0.1736</code></td>
-</tr>
-<tr class="odd">
-<td><code>p4F</code></td>
-<td style="text-align: right;"><code>0.4534</code></td>
-</tr>
-<tr class="even">
-<td><code>p4T</code></td>
-<td style="text-align: right;"><code>0.0132</code></td>
-</tr>
-</tbody>
-</table>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><code>classical_features(path)</code></th>
-<th style="text-align: right;">Value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>line_flux</code></td>
-<td style="text-align: right;"><code>1.2500</code></td>
-</tr>
-<tr class="even">
-<td><code>equivalent_width</code></td>
-<td style="text-align: right;"><code>1.2500</code></td>
-</tr>
-<tr class="odd">
-<td><code>peak_flux</code></td>
-<td style="text-align: right;"><code>0.3990</code></td>
-</tr>
-<tr class="even">
-<td><code>fwhm</code></td>
-<td style="text-align: right;"><code>3.3267</code></td>
-</tr>
-<tr class="odd">
-<td><code>w80</code></td>
-<td style="text-align: right;"><code>3.0746</code></td>
-</tr>
-<tr class="even">
-<td><code>centroid</code></td>
-<td style="text-align: right;"><code>0.3600</code></td>
-</tr>
-<tr class="odd">
-<td><code>line_dispersion</code></td>
-<td style="text-align: right;"><code>1.1657</code></td>
-</tr>
-<tr class="even">
-<td><code>skewness</code></td>
-<td style="text-align: right;"><code>-0.0815</code></td>
-</tr>
-<tr class="odd">
-<td><code>kurtosis_excess</code></td>
-<td style="text-align: right;"><code>-0.6044</code></td>
-</tr>
-</tbody>
-</table>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">classical_features</span>(path)</span></code></pre></div>
+</div>
+</div>
+<p>For a larger set of paper figures and small reproducible examples, see the <a href="examples.html">Examples</a> page.</p>
 </section>
-<section id="two-visual-anchors" class="level2">
-<h2 class="anchored" data-anchor-id="two-visual-anchors">Two visual anchors</h2>
-<div class="columns">
-<div class="column" style="width:66%;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="site-assets/toy_case_row1.png" class="img-fluid figure-img"></p>
-<figcaption>Cropped toy-line comparison strip from the current repository figures.</figcaption>
-</figure>
 </div>
-</div><div class="column" style="width:34%;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="site-assets/kinematics_col1_maps.png" class="img-fluid figure-img"></p>
-<figcaption>Single-galaxy kinematic crop from the current repository figures.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>These are the repository-local assets the site actually uses. The first shows the profile-comparison logic used in the paper discussion of line-shape discrimination. The second is a cropped IFU-facing kinematic example, kept narrower so the homepage stays clean instead of showing the full multi-panel block.</p>
-<p>More examples live on the <a href="examples.html">Examples</a> page.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -366,68 +281,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       icon: icon
     };
     anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
-    }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
-    }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
-    });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
         var filterRegex = new RegExp('/' + window.location.host + '/');

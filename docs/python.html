@@ -60,11 +60,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -77,18 +72,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-a8976c3e89df70b272bdfba3d2fda974.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -120,7 +103,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <span class="navbar-title">spectropath</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -182,85 +164,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="python-use" class="level1">
-<h1>Python use</h1>
-<p><code>spectropath</code> is an R package. There is not yet a separate native Python package, so the cleanest Python workflow is to call it through <code>Rscript</code>. If you already use <code>rpy2</code>, you can also bridge to the R functions directly.</p>
-<section id="recommended-call-spectropath-from-python-with-rscript" class="level2">
-<h2 class="anchored" data-anchor-id="recommended-call-spectropath-from-python-with-rscript">Recommended: call <code>spectropath</code> from Python with <code>Rscript</code></h2>
-<p>This keeps the setup simple and works well in notebooks.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> io</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>R_CODE <span class="op">=</span> <span class="vs">r'''</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="vs">library</span><span class="kw">(</span><span class="vs">spectropath</span><span class="kw">)</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="vs">u &lt;- seq</span><span class="kw">(</span><span class="vs">-5, 5, length</span><span class="dv">.</span><span class="vs">out = 500</span><span class="kw">)</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="vs">f &lt;- dnorm</span><span class="kw">(</span><span class="vs">u, 0, 1</span><span class="kw">)</span><span class="vs"> </span><span class="op">+</span><span class="vs"> 0</span><span class="dv">.</span><span class="vs">25 </span><span class="op">*</span><span class="vs"> dnorm</span><span class="kw">(</span><span class="vs">u, 1</span><span class="dv">.</span><span class="vs">8, 0</span><span class="dv">.</span><span class="vs">45</span><span class="kw">)</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="vs">path &lt;- cbind</span><span class="kw">(</span><span class="vs">u, f</span><span class="kw">)</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="vs">write</span><span class="dv">.</span><span class="vs">csv</span><span class="kw">(</span><span class="vs">path_features</span><span class="kw">(</span><span class="vs">path</span><span class="kw">)</span><span class="vs">, stdout</span><span class="kw">()</span><span class="vs">, row</span><span class="dv">.</span><span class="vs">names = FALSE</span><span class="kw">)</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="vs">'''</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> subprocess.run(</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Rscript"</span>, <span class="st">"-e"</span>, R_CODE],</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    check<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    capture_output<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    text<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>features <span class="op">=</span> pd.read_csv(io.StringIO(result.stdout))</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>features</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>For classical summaries:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> io</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>R_CODE <span class="op">=</span> <span class="vs">r'''</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="vs">library</span><span class="kw">(</span><span class="vs">spectropath</span><span class="kw">)</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="vs">u &lt;- seq</span><span class="kw">(</span><span class="vs">-5, 5, length</span><span class="dv">.</span><span class="vs">out = 500</span><span class="kw">)</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="vs">f &lt;- dnorm</span><span class="kw">(</span><span class="vs">u, 0, 1</span><span class="kw">)</span><span class="vs"> </span><span class="op">+</span><span class="vs"> 0</span><span class="dv">.</span><span class="vs">25 </span><span class="op">*</span><span class="vs"> dnorm</span><span class="kw">(</span><span class="vs">u, 1</span><span class="dv">.</span><span class="vs">8, 0</span><span class="dv">.</span><span class="vs">45</span><span class="kw">)</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="vs">path &lt;- cbind</span><span class="kw">(</span><span class="vs">u, f</span><span class="kw">)</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="vs">write</span><span class="dv">.</span><span class="vs">csv</span><span class="kw">(</span><span class="vs">classical_features</span><span class="kw">(</span><span class="vs">path</span><span class="kw">)</span><span class="vs">, stdout</span><span class="kw">()</span><span class="vs">, row</span><span class="dv">.</span><span class="vs">names = FALSE</span><span class="kw">)</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="vs">'''</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> subprocess.run(</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Rscript"</span>, <span class="st">"-e"</span>, R_CODE],</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    check<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    capture_output<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    text<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>classical <span class="op">=</span> pd.read_csv(io.StringIO(result.stdout))</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>classical</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="python" class="level1">
+<h1>Python</h1>
+<p><code>spectropath</code> is an R package. If your analysis stack is in Python, the cleanest option is usually to call it through <code>Rscript</code> and read the result back into Python.</p>
+<section id="through-subprocess" class="level2">
+<h2 class="anchored" data-anchor-id="through-subprocess">Through <code>subprocess</code></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>code <span class="op">=</span> <span class="vs">r'''</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="vs">library</span><span class="kw">(</span><span class="vs">spectropath</span><span class="kw">)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="vs">u &lt;- seq</span><span class="kw">(</span><span class="vs">-5, 5, length</span><span class="dv">.</span><span class="vs">out = 500</span><span class="kw">)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="vs">f &lt;- dnorm</span><span class="kw">(</span><span class="vs">u, 0, 1</span><span class="kw">)</span><span class="vs"> </span><span class="op">+</span><span class="vs"> 0</span><span class="dv">.</span><span class="vs">25 </span><span class="op">*</span><span class="vs"> dnorm</span><span class="kw">(</span><span class="vs">u, 1</span><span class="dv">.</span><span class="vs">8, 0</span><span class="dv">.</span><span class="vs">45</span><span class="kw">)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="vs">path &lt;- cbind</span><span class="kw">(</span><span class="vs">u, f</span><span class="kw">)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="vs">print</span><span class="kw">(</span><span class="vs">path_features</span><span class="kw">(</span><span class="vs">path</span><span class="kw">))</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="vs">'''</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>subprocess.run([<span class="st">"Rscript"</span>, <span class="st">"-e"</span>, code], check<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
 </section>
-<section id="optional-direct-bridge-with-rpy2" class="level2">
-<h2 class="anchored" data-anchor-id="optional-direct-bridge-with-rpy2">Optional: direct bridge with <code>rpy2</code></h2>
-<p>If <code>rpy2</code> is installed in your Python environment:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> r</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> numpy2ri</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>numpy2ri.activate()</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>r(<span class="st">"library(spectropath)"</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">500</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> np.exp(<span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> u<span class="op">**</span><span class="dv">2</span>) <span class="op">+</span> <span class="fl">0.25</span> <span class="op">*</span> np.exp(<span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> ((u <span class="op">-</span> <span class="fl">1.8</span>) <span class="op">/</span> <span class="fl">0.45</span>)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> np.column_stack([u, f])</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> r[<span class="st">"path_features"</span>](path)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>res</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="downloadable-notebook" class="level2">
-<h2 class="anchored" data-anchor-id="downloadable-notebook">Downloadable notebook</h2>
+<section id="through-rpy2" class="level2">
+<h2 class="anchored" data-anchor-id="through-rpy2">Through <code>rpy2</code></h2>
+<p>If you already use <code>rpy2</code>, you can call the same functions directly from a Python session.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2 <span class="im">import</span> robjects</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>robjects.r(<span class="st">"library(spectropath)"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>robjects.r(<span class="st">"""</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">u &lt;- seq(-5, 5, length.out = 500)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">f &lt;- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">path &lt;- cbind(u, f)</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="st">print(path_features(path))</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>)</span></code></pre></div>
+<p>A small notebook version is included here:</p>
 <p><a href="./notebooks/spectropath_python_quickstart.html">Download the example notebook</a></p>
-<p>The notebook contains the same two pathways:</p>
-<ul>
-<li><code>Rscript</code> from Python</li>
-<li>optional <code>rpy2</code> bridge</li>
-</ul>
 
 
 </section>
@@ -276,68 +211,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       icon: icon
     };
     anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
-    }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
-    }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
-    });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
         var filterRegex = new RegExp('/' + window.location.host + '/');

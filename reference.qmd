@@ -2,28 +2,71 @@
 title: "Reference"
 ---
 
-# Public functions
+# Reference
 
-The package keeps the public surface small on purpose.
+The public API is intentionally small.
 
-## Main entry points
+## Main functions
 
-| Function | Purpose |
-|---|---|
-| `path_features(path, depth = 4)` | Return the paper-facing path coordinates |
-| `classical_features(path)` | Return classical line-profile summaries |
-| `as_spectral_path(u, F)` | Build a path matrix from ordered coordinate and signal |
+::: {.reference-list}
+::: {.reference-item}
+`path_features(path, depth = 4)`
 
-## Paper notation
+Returns the paper-facing path coordinates.
+:::
 
-| Output column | Interpretation |
-|---|---|
-| `p2` | signed velocity–flux area |
-| `p3u` | location of asymmetry along the ordered coordinate |
-| `p3F` | whether asymmetry is concentrated in bright or faint parts of the line |
-| `p4F` | higher-order flux modulation |
-| `p4T` | twist-like higher-order structure |
-| `p_pm` | emission–absorption ordering |
+::: {.reference-item}
+`classical_features(path)`
+
+Returns classical line-profile summaries used for comparison.
+:::
+
+::: {.reference-item}
+`as_spectral_path(u, F)`
+
+Builds a path matrix from an ordered coordinate and a measured signal.
+:::
+:::
+
+## Output columns
+
+::: {.notation-grid}
+::: {.notation-item}
+`p2`
+
+Signed velocity--flux area.
+:::
+
+::: {.notation-item}
+`p3u`
+
+Location of asymmetry along the ordered coordinate.
+:::
+
+::: {.notation-item}
+`p3F`
+
+Whether asymmetry is concentrated in bright or faint parts of the line.
+:::
+
+::: {.notation-item}
+`p4F`
+
+Higher-order flux modulation.
+:::
+
+::: {.notation-item}
+`p4T`
+
+Twist-like higher-order structure.
+:::
+
+::: {.notation-item}
+`p_pm`
+
+Emission--absorption ordering.
+:::
+:::
 
 ## Minimal workflow
 
@@ -37,9 +80,3 @@ path <- cbind(u, f)
 path_features(path)
 classical_features(path)
 ```
-
-## Scope
-
-`spectropath` is the narrow, paper-facing package. It is meant for ordered
-line-profile diagnostics with stable notation, rather than the broader
-exploratory feature space that existed in earlier experiments.

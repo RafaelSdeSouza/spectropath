@@ -4,6 +4,7 @@ project:
 
 website:
   title: "spectropath"
+  search: false
   navbar:
     left:
       - href: index.qmd
@@ -26,5 +27,5 @@ format:
     theme: cosmo
     css: styles.css
     toc: false
-    code-copy: true
+    code-copy: false
     smooth-scroll: true
