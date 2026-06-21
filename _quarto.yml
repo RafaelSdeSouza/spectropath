@@ -9,8 +9,6 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: examples.qmd
-        text: Examples
       - href: python.qmd
         text: Python
       - href: reference.qmd
