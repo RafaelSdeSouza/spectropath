@@ -1,12 +1,10 @@
 ---
-title: "Reference"
+title: "Functions"
 ---
 
-# Reference
+# Main functions
 
 The public API is intentionally small.
-
-## Main functions
 
 ::: {.reference-list}
 ::: {.reference-item}
@@ -24,59 +22,65 @@ Returns classical line-profile summaries used for comparison.
 ::: {.reference-item}
 `as_spectral_path(u, F)`
 
-Builds a path matrix from an ordered coordinate and a measured signal.
+Builds a two-column path matrix from an ordered coordinate and a measured
+signal.
 :::
 :::
 
-## Output columns
+## Paper notation
 
-::: {.notation-grid}
-::: {.notation-item}
+::: {.notation-table}
+::: {.notation-row}
+::: {.notation-symbol}
 `p2`
-
+:::
+::: {.notation-meaning}
 Signed velocity--flux area.
 :::
+:::
 
-::: {.notation-item}
+::: {.notation-row}
+::: {.notation-symbol}
 `p3u`
-
+:::
+::: {.notation-meaning}
 Location of asymmetry along the ordered coordinate.
 :::
+:::
 
-::: {.notation-item}
+::: {.notation-row}
+::: {.notation-symbol}
 `p3F`
-
+:::
+::: {.notation-meaning}
 Whether asymmetry is concentrated in bright or faint parts of the line.
 :::
+:::
 
-::: {.notation-item}
+::: {.notation-row}
+::: {.notation-symbol}
 `p4F`
-
+:::
+::: {.notation-meaning}
 Higher-order flux modulation.
 :::
-
-::: {.notation-item}
-`p4T`
-
-Twist-like higher-order structure.
 :::
 
-::: {.notation-item}
-`p_pm`
+::: {.notation-row}
+::: {.notation-symbol}
+`p4T`
+:::
+::: {.notation-meaning}
+Twist-like higher-order structure.
+:::
+:::
 
+::: {.notation-row}
+::: {.notation-symbol}
+`p_pm`
+:::
+::: {.notation-meaning}
 Emission--absorption ordering.
 :::
 :::
-
-## Minimal workflow
-
-```r
-library(spectropath)
-
-u <- seq(-5, 5, length.out = 500)
-f <- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)
-path <- cbind(u, f)
-
-path_features(path)
-classical_features(path)
-```
+:::

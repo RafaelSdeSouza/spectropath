@@ -7,12 +7,12 @@ website:
   search: false
   navbar:
     left:
-      - href: index.qmd
-        text: Home
+      - href: r.qmd
+        text: R
       - href: python.qmd
         text: Python
       - href: reference.qmd
-        text: Reference
+        text: Functions
     right:
       - href: https://github.com/RafaelSdeSouza/spectropath
         text: GitHub

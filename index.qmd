@@ -21,7 +21,7 @@ you want them.
 
 ::: {.inline-links}
 [Python](python.html)
-[Reference](reference.html)
+[Functions](reference.html)
 [GitHub](https://github.com/RafaelSdeSouza/spectropath)
 :::
 
@@ -51,27 +51,20 @@ path_features(path)
 
 ::::
 
-## Figures {#figures .section-heading}
+## Application examples {#figures .section-heading}
 
-:::: {.showcase-grid}
+:::: {.feature-stack}
 
-:::: {.showcase-lead}
-
-:::: {.showcase-frame .showcase-frame-wide}
-![](site-assets/moffat_stress_cases_panel_boundary_regions_row1.png)
-::::
+:::: {.feature-panel .feature-panel-atlas}
+![](site-assets/filled_atlas_8x8.png)
 
 ::: {.showcase-caption}
-Profile comparison.
+Line-profile morphology.
 :::
 ::::
 
-:::: {.showcase-side}
-
-:::: {.kinematics-pair}
-![](site-assets/kinematics_context_crop.png){.kinematics-slice}
-![](site-assets/kinematics_starlet_crop.png){.kinematics-slice}
-::::
+:::: {.feature-panel .feature-panel-ifu}
+![](site-assets/manga_kinematics_comparison_paper.png)
 
 ::: {.showcase-caption}
 IFU kinematics.

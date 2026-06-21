@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Reference – spectropath</title>
+<title>Functions – spectropath</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,41 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -109,8 +74,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
-<span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./r.html"> 
+<span class="menu-text">R</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./python.html"> 
@@ -118,7 +83,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./reference.html" aria-current="page"> 
-<span class="menu-text">Reference</span></a>
+<span class="menu-text">Functions</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -143,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Reference</h1>
+<h1 class="title">Functions</h1>
 </div>
 
 
@@ -160,11 +125,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="reference" class="level1">
-<h1>Reference</h1>
+<section id="main-functions" class="level1">
+<h1>Main functions</h1>
 <p>The public API is intentionally small.</p>
-<section id="main-functions" class="level2">
-<h2 class="anchored" data-anchor-id="main-functions">Main functions</h2>
 <div class="reference-list">
 <div class="reference-item">
 <p><code>path_features(path, depth = 4)</code></p>
@@ -176,49 +139,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="reference-item">
 <p><code>as_spectral_path(u, F)</code></p>
-<p>Builds a path matrix from an ordered coordinate and a measured signal.</p>
+<p>Builds a two-column path matrix from an ordered coordinate and a measured signal.</p>
 </div>
 </div>
-</section>
-<section id="output-columns" class="level2">
-<h2 class="anchored" data-anchor-id="output-columns">Output columns</h2>
-<div class="notation-grid">
-<div class="notation-item">
+<section id="paper-notation" class="level2">
+<h2 class="anchored" data-anchor-id="paper-notation">Paper notation</h2>
+<div class="notation-table">
+<div class="notation-row">
+<div class="notation-symbol">
 <p><code>p2</code></p>
+</div>
+<div class="notation-meaning">
 <p>Signed velocity–flux area.</p>
 </div>
-<div class="notation-item">
+</div>
+<div class="notation-row">
+<div class="notation-symbol">
 <p><code>p3u</code></p>
+</div>
+<div class="notation-meaning">
 <p>Location of asymmetry along the ordered coordinate.</p>
 </div>
-<div class="notation-item">
+</div>
+<div class="notation-row">
+<div class="notation-symbol">
 <p><code>p3F</code></p>
+</div>
+<div class="notation-meaning">
 <p>Whether asymmetry is concentrated in bright or faint parts of the line.</p>
 </div>
-<div class="notation-item">
+</div>
+<div class="notation-row">
+<div class="notation-symbol">
 <p><code>p4F</code></p>
+</div>
+<div class="notation-meaning">
 <p>Higher-order flux modulation.</p>
 </div>
-<div class="notation-item">
+</div>
+<div class="notation-row">
+<div class="notation-symbol">
 <p><code>p4T</code></p>
+</div>
+<div class="notation-meaning">
 <p>Twist-like higher-order structure.</p>
 </div>
-<div class="notation-item">
+</div>
+<div class="notation-row">
+<div class="notation-symbol">
 <p><code>p_pm</code></p>
+</div>
+<div class="notation-meaning">
 <p>Emission–absorption ordering.</p>
 </div>
 </div>
-</section>
-<section id="minimal-workflow" class="level2">
-<h2 class="anchored" data-anchor-id="minimal-workflow">Minimal workflow</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spectropath)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">500</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(u, <span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span> <span class="fl">0.25</span> <span class="sc">*</span> <span class="fu">dnorm</span>(u, <span class="fl">1.8</span>, <span class="fl">0.45</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">cbind</span>(u, f)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">path_features</span>(path)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">classical_features</span>(path)</span></code></pre></div>
+</div>
 
 
 </section>

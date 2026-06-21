@@ -266,6 +266,39 @@ h2.section-heading,
   margin: 0 0 0.9rem;
 }
 
+.feature-stack {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2.2rem;
+}
+
+.feature-panel {
+  padding: 0.95rem 0.95rem 0.82rem;
+  background: var(--sp-white);
+  border: 1px solid var(--sp-line);
+  border-radius: var(--sp-radius);
+  box-shadow: var(--sp-shadow);
+}
+
+.feature-panel-atlas {
+  border-top: 4px solid var(--sp-accent);
+}
+
+.feature-panel-ifu {
+  border-top: 4px solid var(--sp-jade);
+}
+
+.feature-panel > p {
+  margin: 0;
+}
+
+.feature-panel img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
 .showcase-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -302,6 +335,15 @@ h2.section-heading,
   aspect-ratio: 16 / 7.6;
 }
 
+.showcase-frame > p {
+  height: 100%;
+  margin: 0;
+}
+
+.showcase-frame > p > img {
+  height: 100%;
+}
+
 .showcase-frame img,
 .showcase-side img,
 .example-block img {
@@ -336,6 +378,13 @@ h2.section-heading,
   gap: 0.7rem;
 }
 
+.kinematics-pair > p {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin: 0;
+}
+
 .kinematics-slice {
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -351,6 +400,45 @@ h2.section-heading,
   flex-wrap: wrap;
   gap: 0.58rem;
   margin-bottom: 2.1rem;
+}
+
+.notation-strip > p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.58rem;
+  margin: 0;
+}
+
+.notation-table {
+  display: grid;
+  gap: 0.7rem;
+  margin-bottom: 2rem;
+}
+
+.notation-row {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 0.9rem;
+  align-items: start;
+  padding: 0.82rem 0.95rem;
+  background: var(--sp-white);
+  border: 1px solid var(--sp-line);
+  border-radius: 16px;
+  box-shadow: var(--sp-shadow);
+}
+
+.notation-symbol code {
+  display: inline-block;
+  padding: 0.24rem 0.56rem;
+  border-radius: 999px;
+  background: var(--sp-blue-soft);
+  color: var(--sp-ink);
+  font-size: 0.95rem;
+}
+
+.notation-meaning {
+  color: #31445f;
+  line-height: 1.45;
 }
 
 .notation-strip code,
@@ -429,7 +517,8 @@ figcaption {
   .showcase-grid,
   .notation-grid,
   .quick-grid,
-  .reference-list {
+  .reference-list,
+  .notation-row {
     grid-template-columns: 1fr;
   }
 

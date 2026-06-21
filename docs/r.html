@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>spectropath from Python – spectropath</title>
+<title>R – spectropath</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,19 +58,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a8976c3e89df70b272bdfba3d2fda974.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-a8976c3e89df70b272bdfba3d2fda974.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -89,7 +89,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-fixed fullcontent quarto-light">
@@ -99,7 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">spectropath</span>
     </a>
   </div>
@@ -109,15 +109,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../r.html"> 
+    <a class="nav-link active" href="./r.html" aria-current="page"> 
 <span class="menu-text">R</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../python.html"> 
+    <a class="nav-link" href="./python.html"> 
 <span class="menu-text">Python</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../reference.html"> 
+    <a class="nav-link" href="./reference.html"> 
 <span class="menu-text">Functions</span></a>
   </li>  
 </ul>
@@ -143,7 +143,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">spectropath from Python</h1>
+<h1 class="title">R</h1>
 </div>
 
 
@@ -160,79 +160,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><code>spectropath</code> is an R package. This notebook shows the simplest Python-facing workflow: call the package with <code>Rscript</code>, and then an optional direct bridge with <code>rpy2</code>.</p>
-<div id="cell-2" class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> io</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
-</div>
-<section id="path-signature-features-via-rscript" class="level2">
-<h2 class="anchored" data-anchor-id="path-signature-features-via-rscript">Path-signature features via <code>Rscript</code></h2>
-<div id="cell-4" class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>R_CODE <span class="op">=</span> <span class="vs">r'''</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="vs">library</span><span class="kw">(</span><span class="vs">spectropath</span><span class="kw">)</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="vs">u &lt;- seq</span><span class="kw">(</span><span class="vs">-5, 5, length</span><span class="dv">.</span><span class="vs">out = 500</span><span class="kw">)</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="vs">f &lt;- dnorm</span><span class="kw">(</span><span class="vs">u, 0, 1</span><span class="kw">)</span><span class="vs"> </span><span class="op">+</span><span class="vs"> 0</span><span class="dv">.</span><span class="vs">25 </span><span class="op">*</span><span class="vs"> dnorm</span><span class="kw">(</span><span class="vs">u, 1</span><span class="dv">.</span><span class="vs">8, 0</span><span class="dv">.</span><span class="vs">45</span><span class="kw">)</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="vs">path &lt;- cbind</span><span class="kw">(</span><span class="vs">u, f</span><span class="kw">)</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="vs">write</span><span class="dv">.</span><span class="vs">csv</span><span class="kw">(</span><span class="vs">path_features</span><span class="kw">(</span><span class="vs">path</span><span class="kw">)</span><span class="vs">, stdout</span><span class="kw">()</span><span class="vs">, row</span><span class="dv">.</span><span class="vs">names = FALSE</span><span class="kw">)</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="vs">'''</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> subprocess.run(</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'Rscript'</span>, <span class="st">'-e'</span>, R_CODE],</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    check<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    capture_output<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    text<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>features <span class="op">=</span> pd.read_csv(io.StringIO(result.stdout))</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>features</span></code></pre></div>
-</div>
+<section id="r" class="level1">
+<h1>R</h1>
+<p><code>spectropath</code> takes a two-column path, with an ordered coordinate in the first column and the measured signal in the second.</p>
+<section id="minimal-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="minimal-workflow">Minimal workflow</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spectropath)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">500</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(u, <span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span> <span class="fl">0.25</span> <span class="sc">*</span> <span class="fu">dnorm</span>(u, <span class="fl">1.8</span>, <span class="fl">0.45</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">cbind</span>(u, f)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">path_features</span>(path)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">classical_features</span>(path)</span></code></pre></div>
 </section>
-<section id="classical-summaries-via-rscript" class="level2">
-<h2 class="anchored" data-anchor-id="classical-summaries-via-rscript">Classical summaries via <code>Rscript</code></h2>
-<div id="cell-6" class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>R_CODE <span class="op">=</span> <span class="vs">r'''</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="vs">library</span><span class="kw">(</span><span class="vs">spectropath</span><span class="kw">)</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="vs">u &lt;- seq</span><span class="kw">(</span><span class="vs">-5, 5, length</span><span class="dv">.</span><span class="vs">out = 500</span><span class="kw">)</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="vs">f &lt;- dnorm</span><span class="kw">(</span><span class="vs">u, 0, 1</span><span class="kw">)</span><span class="vs"> </span><span class="op">+</span><span class="vs"> 0</span><span class="dv">.</span><span class="vs">25 </span><span class="op">*</span><span class="vs"> dnorm</span><span class="kw">(</span><span class="vs">u, 1</span><span class="dv">.</span><span class="vs">8, 0</span><span class="dv">.</span><span class="vs">45</span><span class="kw">)</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="vs">path &lt;- cbind</span><span class="kw">(</span><span class="vs">u, f</span><span class="kw">)</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="vs">write</span><span class="dv">.</span><span class="vs">csv</span><span class="kw">(</span><span class="vs">classical_features</span><span class="kw">(</span><span class="vs">path</span><span class="kw">)</span><span class="vs">, stdout</span><span class="kw">()</span><span class="vs">, row</span><span class="dv">.</span><span class="vs">names = FALSE</span><span class="kw">)</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="vs">'''</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> subprocess.run(</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'Rscript'</span>, <span class="st">'-e'</span>, R_CODE],</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    check<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    capture_output<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    text<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>classical <span class="op">=</span> pd.read_csv(io.StringIO(result.stdout))</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>classical</span></code></pre></div>
-</div>
+<section id="symmetric-profile" class="level2">
+<h2 class="anchored" data-anchor-id="symmetric-profile">Symmetric profile</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">500</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(u, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">cbind</span>(u, f)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">path_features</span>(path)</span></code></pre></div>
+<pre class="text"><code>      p2  p_pm  p3u    p3F    p4F p4T
+  0.0000 0.000 0.000 -0.1601 0.3974 0</code></pre>
 </section>
-<section id="optional-direct-bridge-with-rpy2" class="level2">
-<h2 class="anchored" data-anchor-id="optional-direct-bridge-with-rpy2">Optional direct bridge with <code>rpy2</code></h2>
-<p>Use this only if <code>rpy2</code> is already installed in your Python environment.</p>
-<div id="cell-8" class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> r</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> numpy2ri</span>
+<section id="asymmetric-wing" class="level2">
+<h2 class="anchored" data-anchor-id="asymmetric-wing">Asymmetric wing</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">500</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(u, <span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span> <span class="fl">0.25</span> <span class="sc">*</span> <span class="fu">dnorm</span>(u, <span class="fl">1.8</span>, <span class="fl">0.45</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">cbind</span>(u, f)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>numpy2ri.activate()</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>r(<span class="st">'library(spectropath)'</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">500</span>)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> np.exp(<span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> u<span class="op">**</span><span class="dv">2</span>) <span class="op">+</span> <span class="fl">0.25</span> <span class="op">*</span> np.exp(<span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> ((u <span class="op">-</span> <span class="fl">1.8</span>) <span class="op">/</span> <span class="fl">0.45</span>)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> np.column_stack([u, f])</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>r[<span class="st">'path_features'</span>](path)</span></code></pre></div>
-</div>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">path_features</span>(path)</span></code></pre></div>
+<pre class="text"><code>      p2  p_pm     p3u    p3F    p4F    p4T
+ -0.3133 0.000 -0.0169 -0.1736 0.4534 0.0132</code></pre>
+</section>
+<section id="mixed-emission-and-absorption" class="level2">
+<h2 class="anchored" data-anchor-id="mixed-emission-and-absorption">Mixed emission and absorption</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">500</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(u, <span class="fl">0.8</span>, <span class="fl">0.7</span>) <span class="sc">-</span> <span class="fl">0.45</span> <span class="sc">*</span> <span class="fu">dnorm</span>(u, <span class="sc">-</span><span class="fl">1.2</span>, <span class="fl">0.35</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">cbind</span>(u, f)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">path_features</span>(path)</span></code></pre></div>
+<pre class="text"><code>      p2    p_pm    p3u    p3F    p4F   p4T
+ -0.2368 -0.3125 0.0217 -0.0842 0.2988 0.0411</code></pre>
+<p>The <code>Reference</code> page gives the paper notation and the public function list.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -592,5 +566,5 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
