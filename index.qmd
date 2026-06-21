@@ -16,8 +16,8 @@ page-layout: full
 Spectropath is a small R package for low-order path coordinates of
 spectral-line profiles.
 
-The current release follows the paper notation:
-`p2`, `p3u`, `p3F`, `p4F`, `p4T`, and `p_pm`.
+It follows the notation used in the paper and returns a compact path-based
+summary of line shape.
 
 ::: {.inline-links}
 [Quick start](#quick-start)
@@ -79,45 +79,9 @@ IFU example.
 
 ## Notation {.section-heading}
 
-:::: {.notation-grid}
-
-::: {.notation-item}
-`p2`
-
-area
+::: {.notation-strip}
+`p2` `p3u` `p3F` `p4F` `p4T` `p_pm`
 :::
-
-::: {.notation-item}
-`p3u`
-
-position
-:::
-
-::: {.notation-item}
-`p3F`
-
-core / wing
-:::
-
-::: {.notation-item}
-`p4F`
-
-modulation
-:::
-
-::: {.notation-item}
-`p4T`
-
-twist
-:::
-
-::: {.notation-item}
-`p_pm`
-
-em / abs
-:::
-
-::::
 
 ## Quick start {#quick-start .section-heading}
 

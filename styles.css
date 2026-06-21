@@ -315,6 +315,11 @@ h2.section-heading,
   font-size: 0.93rem;
 }
 
+.notation-item {
+  text-align: center;
+  text-transform: lowercase;
+}
+
 .quick-grid,
 .reference-list {
   display: grid;
