@@ -3,13 +3,13 @@ title: ""
 page-layout: full
 ---
 
-<<<<<<< HEAD
-::: {.home-shell}
-::: {.hero-grid}
-::: {.hero-copy}
-::: {.section-label}
-Path-signature coordinates for spectral-line morphology
-:::
+:::: {.home-shell}
+
+:::: {.hero-grid}
+
+:::: {.hero-copy}
+
+<span class="section-label">Path-signature coordinates for spectral-line morphology</span>
 
 # spectropath {.hero-name}
 
@@ -21,45 +21,20 @@ The package follows the notation used in the paper:
 It is meant for the cases where line shape matters:
 blue and red wings, shoulders, broad bases, double peaks, and mixed
 emission--absorption structure.
-=======
-:::: {.home-shell}
-
-:::: {.hero-grid}
-
-:::: {.hero-copy}
-
-<span class="section-label">Path-signature diagnostics for spectral-line morphology</span>
-
-# spectropath {.hero-name}
-
-Spectropath is a small R package for compact geometric descriptors of ordered spectral-line profiles.
-
-It maps an ordered coordinate and a measured line profile into low-order coordinates for asymmetry, core-versus-wing structure, higher-order modulation, and emission--absorption ordering.
-
-Use it when line shape matters: blue and red wings, shoulders, broad bases, double peaks, and mixed emission--absorption structure.
->>>>>>> b5ecb232ae03aa2b4e66dc5a4fae63446363b6d6
 
 ::: {.inline-links}
 [Quick start](#quick-start)
 [Examples](examples.html)
-<<<<<<< HEAD
 [Python](python.html)
-=======
->>>>>>> b5ecb232ae03aa2b4e66dc5a4fae63446363b6d6
 [Reference](reference.html)
 [GitHub](https://github.com/RafaelSdeSouza/spectropath)
 :::
 
-<<<<<<< HEAD
-::: {.code-card}
-Minimal workflow
-=======
 ::::
 
 :::: {.code-card}
 
-Example
->>>>>>> b5ecb232ae03aa2b4e66dc5a4fae63446363b6d6
+Minimal workflow
 
 ```r
 library(spectropath)
@@ -82,9 +57,9 @@ path_features(path)
 
 ## Selected results {.section-heading}
 
-<<<<<<< HEAD
-::: {.showcase-grid}
-::: {.showcase-lead}
+:::: {.showcase-grid}
+
+:::: {.showcase-lead}
 ![Controlled profile comparison strip.](site-assets/moffat_stress_cases_panel_boundary_regions_row1.png)
 
 ::: {.showcase-caption}
@@ -92,9 +67,9 @@ One of the controlled comparison strips from the paper, showing a case where a
 path coordinate remains discriminative in a region where width-based summaries
 overlap.
 :::
-:::
+::::
 
-::: {.showcase-side}
+:::: {.showcase-side}
 <div class="kinematics-pair">
   <img src="site-assets/kinematics_context_crop.png" class="kinematics-slice context" alt="MaNGA galaxy context image">
   <img src="site-assets/kinematics_starlet_crop.png" class="kinematics-slice masked" alt="Starlet-masked kinematic map">
@@ -103,39 +78,14 @@ overlap.
 ::: {.showcase-caption}
 The single-object IFU example shown as galaxy context plus the starlet-masked
 kinematic result used in the paper workflow.
-=======
-::: {.figure-grid}
-
-::: {.image-card}
-![](site-assets/toy_case_row1.png)
-
-::: {.card-caption}
-Toy line profiles used to compare classical and path-based descriptors.
 :::
-:::
+::::
 
-::: {.image-card}
-![](site-assets/signed_emabs_cases_panel_boundary_regions_row1.png)
-
-::: {.card-caption}
-Mixed-sign profiles where emission--absorption ordering becomes relevant.
-:::
-:::
-
-::: {.image-card}
-![](site-assets/kinematics_col1_maps.png)
-
-::: {.card-caption}
-Path-selected regions in an IFU cube, summarized as a compact kinematic map.
->>>>>>> b5ecb232ae03aa2b4e66dc5a4fae63446363b6d6
-:::
-:::
-
-:::
+::::
 
 ## Paper notation {.section-heading}
 
-::: {.notation-grid}
+:::: {.notation-grid}
 
 ::: {.notation-item}
 `p2`
@@ -173,13 +123,13 @@ Twist-like higher-order structure.
 Emission--absorption ordering.
 :::
 
-:::
+::::
 
 ## Quick start {#quick-start .section-heading}
 
-::: {.quick-grid}
+:::: {.quick-grid}
 
-::: {.quick-card}
+:::: {.quick-card}
 
 Install
 
@@ -189,9 +139,9 @@ remotes::install_github("RafaelSdeSouza/spectropath")
 library(spectropath)
 ```
 
-:::
+::::
 
-::: {.quick-card}
+:::: {.quick-card}
 
 Compute
 
@@ -204,10 +154,11 @@ path_features(path)
 classical_features(path)
 ```
 
-:::
+::::
 
-:::
+::::
 
-For a larger set of paper figures and small reproducible examples, see the [Examples](examples.html) page.
+For a larger set of paper figures and small reproducible examples, see the
+[Examples](examples.html) page.
 
 ::::
