@@ -7,3 +7,6 @@
 *.tar.gz
 *.tgz
 Rplots.pdf
+
+/.quarto/
+**/*.quarto_ipynb

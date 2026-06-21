@@ -15,6 +15,8 @@ The package exposes only the paper-facing path-signature diagnostics, plus a
 small set of classical line-profile summaries for benchmarking and
 machine-learning workflows.
 
+Website: [rafaelsdesouza.com.br/spectropath](http://rafaelsdesouza.com.br/spectropath/)
+
 ## Installation
 
 After the GitHub repository is renamed to `spectropath`, install directly with:
@@ -50,31 +52,14 @@ path_features(path, depth = 4)
 
 `path_features()` returns the compact paper notation by default:
 
-| Column | Scalar helper | Intuition |
-|---|---|---|
-| `p2` | `levy_area()` | signed area / blue--red handedness |
-| `p3u` | `curl_u()` | where asymmetry lies along the ordered coordinate |
-| `p3F` | `curl_f()` | whether asymmetry lies in bright or faint parts of the line |
-| `p4F` | `jerk_f()` | higher-order flux modulation, shoulders, broad bases |
-| `p4T` | `twist_uf()` | twist-like bends, reversals, double peaks, multi-components |
-| `p_pm` | `emabs_area()` | emission--absorption ordering |
-
-For readable column names matching the scalar helpers, use:
-
-```r
-path_features(path, depth = 4, notation = "descriptive")
-```
-
-Additional exploratory contrasts are available with `extended = TRUE`.
-
-For mixed emission--absorption profiles:
-
-```r
-f_mixed <- exp(-0.5 * ((u - 0.7) / 0.5)^2) -
-  0.8 * exp(-0.5 * ((u + 0.6) / 0.35)^2)
-
-emabs_area(cbind(u, f_mixed))
-```
+| Column | Intuition |
+|---|---|
+| `p2` | signed area / blue--red handedness |
+| `p3u` | where asymmetry lies along the ordered coordinate |
+| `p3F` | whether asymmetry lies in bright or faint parts of the line |
+| `p4F` | higher-order flux modulation, shoulders, broad bases |
+| `p4T` | twist-like bends, reversals, double peaks, multi-components |
+| `p_pm` | emission--absorption ordering |
 
 ## Classical convenience features
 

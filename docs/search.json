@@ -81,21 +81,21 @@
     "href": "reference.html",
     "title": "Reference",
     "section": "",
-    "text": "The package keeps the public surface small on purpose.\n\n\n\n\n\n\n\n\n\nFunction\nPurpose\n\n\n\n\npath_features(path, depth = 4)\nReturn the paper-facing path coordinates\n\n\nclassical_features(path)\nReturn classical line-profile summaries\n\n\nas_spectral_path(u, F)\nBuild a path matrix from ordered coordinate and signal\n\n\nemabs_area(path)\nCompute the emission–absorption ordering coordinate\n\n\n\n\n\n\n\n\n\n\n\n\n\nOutput column\nInterpretation\n\n\n\n\np2\nsigned velocity–flux area\n\n\np3u\nlocation of asymmetry along the ordered coordinate\n\n\np3F\nwhether asymmetry is concentrated in bright or faint parts of the line\n\n\np4F\nhigher-order flux modulation\n\n\np4T\ntwist-like higher-order structure\n\n\np_pm\nemission–absorption ordering\n\n\n\nFor descriptive names instead of paper notation:\npath_features(path, notation = \"descriptive\")\n\n\n\nlibrary(spectropath)\n\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\n\npath_features(path)\nclassical_features(path)\n\n\n\nspectropath is the narrow, paper-facing package. It is meant for ordered line-profile diagnostics with stable notation, rather than the broader exploratory feature space that existed in earlier experiments."
+    "text": "The package keeps the public surface small on purpose.\n\n\n\n\n\n\n\n\n\nFunction\nPurpose\n\n\n\n\npath_features(path, depth = 4)\nReturn the paper-facing path coordinates\n\n\nclassical_features(path)\nReturn classical line-profile summaries\n\n\nas_spectral_path(u, F)\nBuild a path matrix from ordered coordinate and signal\n\n\n\n\n\n\n\n\n\n\n\n\n\nOutput column\nInterpretation\n\n\n\n\np2\nsigned velocity–flux area\n\n\np3u\nlocation of asymmetry along the ordered coordinate\n\n\np3F\nwhether asymmetry is concentrated in bright or faint parts of the line\n\n\np4F\nhigher-order flux modulation\n\n\np4T\ntwist-like higher-order structure\n\n\np_pm\nemission–absorption ordering\n\n\n\n\n\n\nlibrary(spectropath)\n\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\n\npath_features(path)\nclassical_features(path)\n\n\n\nspectropath is the narrow, paper-facing package. It is meant for ordered line-profile diagnostics with stable notation, rather than the broader exploratory feature space that existed in earlier experiments."
   },
   {
     "objectID": "reference.html#main-entry-points",
     "href": "reference.html#main-entry-points",
     "title": "Reference",
     "section": "",
-    "text": "Function\nPurpose\n\n\n\n\npath_features(path, depth = 4)\nReturn the paper-facing path coordinates\n\n\nclassical_features(path)\nReturn classical line-profile summaries\n\n\nas_spectral_path(u, F)\nBuild a path matrix from ordered coordinate and signal\n\n\nemabs_area(path)\nCompute the emission–absorption ordering coordinate"
+    "text": "Function\nPurpose\n\n\n\n\npath_features(path, depth = 4)\nReturn the paper-facing path coordinates\n\n\nclassical_features(path)\nReturn classical line-profile summaries\n\n\nas_spectral_path(u, F)\nBuild a path matrix from ordered coordinate and signal"
   },
   {
     "objectID": "reference.html#paper-notation",
     "href": "reference.html#paper-notation",
     "title": "Reference",
     "section": "",
-    "text": "Output column\nInterpretation\n\n\n\n\np2\nsigned velocity–flux area\n\n\np3u\nlocation of asymmetry along the ordered coordinate\n\n\np3F\nwhether asymmetry is concentrated in bright or faint parts of the line\n\n\np4F\nhigher-order flux modulation\n\n\np4T\ntwist-like higher-order structure\n\n\np_pm\nemission–absorption ordering\n\n\n\nFor descriptive names instead of paper notation:\npath_features(path, notation = \"descriptive\")"
+    "text": "Output column\nInterpretation\n\n\n\n\np2\nsigned velocity–flux area\n\n\np3u\nlocation of asymmetry along the ordered coordinate\n\n\np3F\nwhether asymmetry is concentrated in bright or faint parts of the line\n\n\np4F\nhigher-order flux modulation\n\n\np4T\ntwist-like higher-order structure\n\n\np_pm\nemission–absorption ordering"
   },
   {
     "objectID": "reference.html#minimal-workflow",
