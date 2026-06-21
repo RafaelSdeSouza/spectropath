@@ -2,29 +2,45 @@
 title: "Functions"
 ---
 
-# Main functions
+# Functions
 
-The public API is intentionally small.
+The package exposes a small set of user-facing functions. The main entry point
+is `path_features()`, which returns the notation used in the paper.
 
-::: {.reference-list}
-::: {.reference-item}
+::: {.function-list}
+
+::: {.function-item}
+::: {.function-call}
 `path_features(path, depth = 4)`
-
-Returns the paper-facing path coordinates.
+:::
+::: {.function-body}
+Computes the low-order path coordinates for a two-column path
+`cbind(u, F)`. The returned columns are `p2`, `p_pm`, `p3u`, `p3F`, `p4F`,
+and `p4T`.
+:::
 :::
 
-::: {.reference-item}
+::: {.function-item}
+::: {.function-call}
 `classical_features(path)`
-
-Returns classical line-profile summaries used for comparison.
+:::
+::: {.function-body}
+Returns classical line-profile summaries for comparison: total line flux,
+equivalent width, peak flux, FWHM, `W80`, centroid, line dispersion, skewness,
+and excess kurtosis.
+:::
 :::
 
-::: {.reference-item}
+::: {.function-item}
+::: {.function-call}
 `as_spectral_path(u, F)`
-
-Builds a two-column path matrix from an ordered coordinate and a measured
-signal.
 :::
+::: {.function-body}
+Builds the two-column matrix expected by the feature functions, with the
+ordered coordinate in the first column and the measured signal in the second.
+:::
+:::
+
 :::
 
 ## Paper notation
@@ -35,7 +51,7 @@ signal.
 `p2`
 :::
 ::: {.notation-meaning}
-Signed velocity--flux area.
+Signed area in the ordered-coordinate--flux plane.
 :::
 :::
 
@@ -44,7 +60,8 @@ Signed velocity--flux area.
 `p3u`
 :::
 ::: {.notation-meaning}
-Location of asymmetry along the ordered coordinate.
+Third-order coordinate sensitive to where profile imbalance occurs along the
+ordered coordinate.
 :::
 :::
 
@@ -53,7 +70,8 @@ Location of asymmetry along the ordered coordinate.
 `p3F`
 :::
 ::: {.notation-meaning}
-Whether asymmetry is concentrated in bright or faint parts of the line.
+Third-order coordinate sensitive to whether structure is associated with
+brighter or fainter parts of the line.
 :::
 :::
 
@@ -62,7 +80,7 @@ Whether asymmetry is concentrated in bright or faint parts of the line.
 `p4F`
 :::
 ::: {.notation-meaning}
-Higher-order flux modulation.
+Fourth-order flux modulation.
 :::
 :::
 
@@ -71,7 +89,8 @@ Higher-order flux modulation.
 `p4T`
 :::
 ::: {.notation-meaning}
-Twist-like higher-order structure.
+Fourth-order mixed coordinate used for bends, shoulders, and multi-component
+profile structure.
 :::
 :::
 
@@ -80,7 +99,7 @@ Twist-like higher-order structure.
 `p_pm`
 :::
 ::: {.notation-meaning}
-Emission--absorption ordering.
+Signed ordering of emission and absorption in mixed-sign profiles.
 :::
 :::
 :::

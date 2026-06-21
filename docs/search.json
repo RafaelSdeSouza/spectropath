@@ -32,7 +32,7 @@
     "href": "index.html",
     "title": "spectropath",
     "section": "",
-    "text": "Low-order path coordinates for spectral-line profiles. Build a path from an ordered coordinate and a measured signal; spectropath returns the notation used in the paper directly.\n\nPython Functions GitHub\n\n\n\n\nMinimal R workflow\nlibrary(spectropath)\n\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) +\n  0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\n\npath_features(path)\n      p2   p_pm    p3u    p3F    p4F    p4T\n -0.3133 0.000 -0.0169 -0.1736 0.4534 0.0132\n\n\n\n\n\n\n\n\nLine-profile morphology.\n\n\n\n\n\nIFU kinematics."
+    "text": "Low-order path coordinates for spectral-line profiles. Build a path from an ordered coordinate and a measured signal; spectropath returns the notation used in the paper directly.\n\nRafael S. de Souza · companion package for the path-signature line morphology paper\n\n\nPython Functions GitHub\n\n\n\n\nMinimal R workflow\nlibrary(spectropath)\n\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) +\n  0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\n\npath_features(path)\n      p2   p_pm    p3u    p3F    p4F    p4T\n -0.3133 0.000 -0.0169 -0.1736 0.4534 0.0132\n\n\n\n\n\n\n\n\nLine-profile morphology.\n\n\n\n\n\nIFU kinematics."
   },
   {
     "objectID": "index.html#figures",
@@ -46,14 +46,14 @@
     "href": "reference.html",
     "title": "Functions",
     "section": "",
-    "text": "The public API is intentionally small.\n\n\npath_features(path, depth = 4)\nReturns the paper-facing path coordinates.\n\n\nclassical_features(path)\nReturns classical line-profile summaries used for comparison.\n\n\nas_spectral_path(u, F)\nBuilds a two-column path matrix from an ordered coordinate and a measured signal.\n\n\n\n\n\n\n\np2\n\n\nSigned velocity–flux area.\n\n\n\n\np3u\n\n\nLocation of asymmetry along the ordered coordinate.\n\n\n\n\np3F\n\n\nWhether asymmetry is concentrated in bright or faint parts of the line.\n\n\n\n\np4F\n\n\nHigher-order flux modulation.\n\n\n\n\np4T\n\n\nTwist-like higher-order structure.\n\n\n\n\np_pm\n\n\nEmission–absorption ordering."
+    "text": "The package exposes a small set of user-facing functions. The main entry point is path_features(), which returns the notation used in the paper.\n\n\n\npath_features(path, depth = 4)\n\n\nComputes the low-order path coordinates for a two-column path cbind(u, F). The returned columns are p2, p_pm, p3u, p3F, p4F, and p4T.\n\n\n\n\nclassical_features(path)\n\n\nReturns classical line-profile summaries for comparison: total line flux, equivalent width, peak flux, FWHM, W80, centroid, line dispersion, skewness, and excess kurtosis.\n\n\n\n\nas_spectral_path(u, F)\n\n\nBuilds the two-column matrix expected by the feature functions, with the ordered coordinate in the first column and the measured signal in the second.\n\n\n\n\n\n\n\n\np2\n\n\nSigned area in the ordered-coordinate–flux plane.\n\n\n\n\np3u\n\n\nThird-order coordinate sensitive to where profile imbalance occurs along the ordered coordinate.\n\n\n\n\np3F\n\n\nThird-order coordinate sensitive to whether structure is associated with brighter or fainter parts of the line.\n\n\n\n\np4F\n\n\nFourth-order flux modulation.\n\n\n\n\np4T\n\n\nFourth-order mixed coordinate used for bends, shoulders, and multi-component profile structure.\n\n\n\n\np_pm\n\n\nSigned ordering of emission and absorption in mixed-sign profiles."
   },
   {
     "objectID": "reference.html#paper-notation",
     "href": "reference.html#paper-notation",
     "title": "Functions",
     "section": "",
-    "text": "p2\n\n\nSigned velocity–flux area.\n\n\n\n\np3u\n\n\nLocation of asymmetry along the ordered coordinate.\n\n\n\n\np3F\n\n\nWhether asymmetry is concentrated in bright or faint parts of the line.\n\n\n\n\np4F\n\n\nHigher-order flux modulation.\n\n\n\n\np4T\n\n\nTwist-like higher-order structure.\n\n\n\n\np_pm\n\n\nEmission–absorption ordering."
+    "text": "p2\n\n\nSigned area in the ordered-coordinate–flux plane.\n\n\n\n\np3u\n\n\nThird-order coordinate sensitive to where profile imbalance occurs along the ordered coordinate.\n\n\n\n\np3F\n\n\nThird-order coordinate sensitive to whether structure is associated with brighter or fainter parts of the line.\n\n\n\n\np4F\n\n\nFourth-order flux modulation.\n\n\n\n\np4T\n\n\nFourth-order mixed coordinate used for bends, shoulders, and multi-component profile structure.\n\n\n\n\np_pm\n\n\nSigned ordering of emission and absorption in mixed-sign profiles."
   },
   {
     "objectID": "examples.html",

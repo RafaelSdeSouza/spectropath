@@ -140,8 +140,8 @@ main.content,
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
-  gap: 1.8rem;
+  grid-template-columns: minmax(250px, 0.78fr) minmax(340px, 1fr);
+  gap: 1.25rem;
   align-items: start;
   margin: 0 auto 2.4rem;
   padding: 1.9rem 1.95rem;
@@ -152,7 +152,7 @@ main.content,
 }
 
 .hero-copy {
-  max-width: 34rem;
+  max-width: 28rem;
 }
 
 .section-label {
@@ -213,11 +213,23 @@ h3 {
 }
 
 .hero-copy p {
-  max-width: 31rem;
+  max-width: 27rem;
   margin: 0 0 0.8rem;
   color: #31445f;
   font-size: 1.06rem;
   line-height: 1.56;
+}
+
+.paper-meta {
+  margin: 0.55rem 0 0;
+  color: var(--sp-muted);
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.42;
+}
+
+.paper-meta p {
+  margin: 0;
 }
 
 .inline-links {
@@ -485,6 +497,43 @@ h2.section-heading,
   gap: 1rem;
 }
 
+.function-list {
+  display: grid;
+  gap: 0.8rem;
+  margin: 1.1rem 0 2rem;
+}
+
+.function-item {
+  display: grid;
+  grid-template-columns: minmax(210px, 0.38fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+  padding: 0.95rem 1.05rem;
+  background: var(--sp-white);
+  border: 1px solid var(--sp-line);
+  border-radius: 16px;
+  box-shadow: var(--sp-shadow);
+}
+
+.function-call code {
+  display: inline-block;
+  padding: 0.26rem 0.56rem;
+  border-radius: 999px;
+  background: var(--sp-blue-soft);
+  color: var(--sp-ink);
+  font-size: 0.93rem;
+}
+
+.function-body {
+  color: #31445f;
+  line-height: 1.48;
+}
+
+.function-body p,
+.function-call p {
+  margin: 0;
+}
+
 .quick-card {
   padding: 1rem 1.05rem;
   margin-bottom: 2rem;
@@ -545,6 +594,7 @@ figcaption {
   .notation-grid,
   .quick-grid,
   .reference-list,
+  .function-item,
   .notation-row {
     grid-template-columns: 1fr;
   }

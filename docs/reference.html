@@ -125,21 +125,33 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="main-functions" class="level1">
-<h1>Main functions</h1>
-<p>The public API is intentionally small.</p>
-<div class="reference-list">
-<div class="reference-item">
+<section id="functions" class="level1">
+<h1>Functions</h1>
+<p>The package exposes a small set of user-facing functions. The main entry point is <code>path_features()</code>, which returns the notation used in the paper.</p>
+<div class="function-list">
+<div class="function-item">
+<div class="function-call">
 <p><code>path_features(path, depth = 4)</code></p>
-<p>Returns the paper-facing path coordinates.</p>
 </div>
-<div class="reference-item">
+<div class="function-body">
+<p>Computes the low-order path coordinates for a two-column path <code>cbind(u, F)</code>. The returned columns are <code>p2</code>, <code>p_pm</code>, <code>p3u</code>, <code>p3F</code>, <code>p4F</code>, and <code>p4T</code>.</p>
+</div>
+</div>
+<div class="function-item">
+<div class="function-call">
 <p><code>classical_features(path)</code></p>
-<p>Returns classical line-profile summaries used for comparison.</p>
 </div>
-<div class="reference-item">
+<div class="function-body">
+<p>Returns classical line-profile summaries for comparison: total line flux, equivalent width, peak flux, FWHM, <code>W80</code>, centroid, line dispersion, skewness, and excess kurtosis.</p>
+</div>
+</div>
+<div class="function-item">
+<div class="function-call">
 <p><code>as_spectral_path(u, F)</code></p>
-<p>Builds a two-column path matrix from an ordered coordinate and a measured signal.</p>
+</div>
+<div class="function-body">
+<p>Builds the two-column matrix expected by the feature functions, with the ordered coordinate in the first column and the measured signal in the second.</p>
+</div>
 </div>
 </div>
 <section id="paper-notation" class="level2">
@@ -150,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
 <p><code>p2</code></p>
 </div>
 <div class="notation-meaning">
-<p>Signed velocity–flux area.</p>
+<p>Signed area in the ordered-coordinate–flux plane.</p>
 </div>
 </div>
 <div class="notation-row">
@@ -158,7 +170,7 @@ ul.task-list li input[type="checkbox"] {
 <p><code>p3u</code></p>
 </div>
 <div class="notation-meaning">
-<p>Location of asymmetry along the ordered coordinate.</p>
+<p>Third-order coordinate sensitive to where profile imbalance occurs along the ordered coordinate.</p>
 </div>
 </div>
 <div class="notation-row">
@@ -166,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
 <p><code>p3F</code></p>
 </div>
 <div class="notation-meaning">
-<p>Whether asymmetry is concentrated in bright or faint parts of the line.</p>
+<p>Third-order coordinate sensitive to whether structure is associated with brighter or fainter parts of the line.</p>
 </div>
 </div>
 <div class="notation-row">
@@ -174,7 +186,7 @@ ul.task-list li input[type="checkbox"] {
 <p><code>p4F</code></p>
 </div>
 <div class="notation-meaning">
-<p>Higher-order flux modulation.</p>
+<p>Fourth-order flux modulation.</p>
 </div>
 </div>
 <div class="notation-row">
@@ -182,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
 <p><code>p4T</code></p>
 </div>
 <div class="notation-meaning">
-<p>Twist-like higher-order structure.</p>
+<p>Fourth-order mixed coordinate used for bends, shoulders, and multi-component profile structure.</p>
 </div>
 </div>
 <div class="notation-row">
@@ -190,7 +202,7 @@ ul.task-list li input[type="checkbox"] {
 <p><code>p_pm</code></p>
 </div>
 <div class="notation-meaning">
-<p>Emission–absorption ordering.</p>
+<p>Signed ordering of emission and absorption in mixed-sign profiles.</p>
 </div>
 </div>
 </div>
