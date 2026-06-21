@@ -152,22 +152,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="hero-grid">
 <div class="hero-copy">
 <div class="section-label">
-<p>Path-signature diagnostics for spectral-line morphology</p>
+<p>Path-signature coordinates for spectral-line morphology</p>
 </div>
 <section id="spectropath" class="level1 hero-name">
 <h1 class="hero-name">spectropath</h1>
-<p><code>spectropath</code> is a small R package built around the notation used in the paper. It takes an ordered coordinate together with a measured line profile and returns a compact set of low-order coordinates for asymmetry, core-versus-wing structure, higher-order modulation, and emission–absorption ordering.</p>
-<p>It is meant for the situations where line shape matters: blue and red wings, shoulders, broad bases, double peaks, and mixed emission–absorption structure.</p>
+<p>Spectropath computes a compact set of low-order path-signature coordinates for spectral lines written as ordered paths (X=(u,F)).</p>
+<p>The package follows the notation used in the paper: <code>p2</code>, <code>p3u</code>, <code>p3F</code>, <code>p4F</code>, <code>p4T</code>, and <code>p_pm</code>. It is meant for the cases where line shape matters: blue and red wings, shoulders, broad bases, double peaks, and mixed emission–absorption structure.</p>
 <div class="inline-links">
-<p><a href="#quick-start">Quick start</a><br>
-<a href="examples.html">Examples</a><br>
-<a href="reference.html">Reference</a><br>
-<a href="https://github.com/RafaelSdeSouza/spectropath">GitHub</a></p>
+<p><a href="#quick-start">Quick start</a> <a href="examples.html">Examples</a> <a href="python.html">Python</a> <a href="reference.html">Reference</a> <a href="https://github.com/RafaelSdeSouza/spectropath">GitHub</a></p>
 </div>
 </section>
 </div>
 <div class="code-card">
-<p>Example</p>
+<p>Simple example</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spectropath)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">500</span>)</span>
@@ -181,38 +178,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="selected-figures" class="level2 section-heading">
 <h2 class="section-heading anchored" data-anchor-id="selected-figures">Selected figures</h2>
-<div class="figure-grid">
-<div class="image-card">
+<div class="showcase-grid">
+<div class="showcase-lead">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="site-assets/toy_case_row1.png" class="img-fluid figure-img"></p>
-<figcaption>Toy profile comparison strip.</figcaption>
+<p><img src="site-assets/moffat_stress_cases_panel_boundary_regions_row1.png" class="img-fluid figure-img"></p>
+<figcaption>Controlled profile comparison strip.</figcaption>
 </figure>
 </div>
-<div class="card-caption">
-<p>Toy line profiles used to compare classical and path-based descriptors.</p>
+<div class="showcase-caption">
+<p>One of the controlled comparison strips from the paper, showing a case where a path coordinate remains discriminative in a region where width-based summaries overlap.</p>
 </div>
 </div>
-<div class="image-card">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="site-assets/signed_emabs_cases_panel_boundary_regions_row1.png" class="img-fluid figure-img"></p>
-<figcaption>Signed emission-absorption ordering strip.</figcaption>
-</figure>
+<div class="showcase-side">
+<div class="kinematics-pair">
+<p><img src="site-assets/kinematics_context_crop.png" class="kinematics-slice context" alt="MaNGA galaxy context image"> <img src="site-assets/kinematics_starlet_crop.png" class="kinematics-slice masked" alt="Starlet-masked kinematic map"></p>
 </div>
-<div class="card-caption">
-<p>Mixed-sign profiles where emission–absorption ordering becomes relevant.</p>
-</div>
-</div>
-<div class="image-card">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="site-assets/kinematics_col1_maps.png" class="img-fluid figure-img"></p>
-<figcaption>Single-galaxy IFU kinematic crop.</figcaption>
-</figure>
-</div>
-<div class="card-caption">
-<p>Path-selected regions in an IFU cube, summarized as a compact kinematic map.</p>
+<div class="showcase-caption">
+<p>The single-object IFU example shown as galaxy context plus the starlet-masked kinematic result used in the paper workflow.</p>
 </div>
 </div>
 </div>
