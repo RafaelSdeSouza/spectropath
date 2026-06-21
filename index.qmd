@@ -64,7 +64,7 @@ Line-profile morphology.
 ::::
 
 :::: {.feature-panel .feature-panel-ifu}
-![](site-assets/manga_kinematics_comparison_paper.png)
+![](site-assets/p3u_p3F_p4T_NII.png)
 
 ::: {.showcase-caption}
 IFU kinematics.
@@ -72,11 +72,5 @@ IFU kinematics.
 ::::
 
 ::::
-
-## Notation {#notation .section-heading}
-
-::: {.notation-strip}
-`p2` `p3u` `p3F` `p4F` `p4T` `p_pm`
-:::
 
 ::::
