@@ -55,6 +55,23 @@ path_features(path)
 
 ::::
 
+## Method {#method .section-heading}
+
+::: {.method-panel}
+
+`spectropath` provides tools for calculating low-order path-signature
+coordinates of spectral-line profiles. These are summary statistics of
+ordered paths, adapted here to line profiles of the form
+`X(u) = (u, F(u))`, where `u` is wavelength or velocity and `F` is flux.
+
+The returned coordinates describe ordered line morphology: signed area,
+where asymmetry occurs, whether structure is concentrated in the core or the
+wings, higher-order bends, and emission--absorption ordering. For convenience,
+the package also estimates classical summaries such as line flux, equivalent
+width, FWHM, `W80`, centroid, and skewness.
+
+:::
+
 ## Astronomical applications {#figures .section-heading}
 
 :::: {.feature-stack}

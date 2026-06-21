@@ -305,6 +305,26 @@ h2.section-heading,
   margin: 0 0 0.9rem;
 }
 
+.method-panel {
+  max-width: 860px;
+  margin: 0 0 2.15rem;
+  padding: 0.95rem 1.15rem;
+  border-left: 4px solid var(--sp-jade);
+  border-radius: 0 16px 16px 0;
+  background: rgba(255, 253, 250, 0.72);
+  color: #31445f;
+}
+
+.method-panel p {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.58;
+}
+
+.method-panel p + p {
+  margin-top: 0.72rem;
+}
+
 .feature-stack {
   display: grid;
   gap: 1rem;
