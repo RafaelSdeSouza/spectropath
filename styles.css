@@ -1,17 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:wght@500;600;700&display=swap');
 
 :root {
-  --sp-ink: #10263f;
-  --sp-muted: #5f748c;
-  --sp-line: #dbe3ec;
-  --sp-paper: #f8fbff;
+  --sp-ink: #132b46;
+  --sp-muted: #61768e;
+  --sp-line: #dbe3eb;
+  --sp-paper: #f7fafc;
   --sp-white: #ffffff;
-  --sp-accent: #e49a3a;
-  --sp-accent-dark: #a45f14;
-  --sp-accent-soft: #fff1dc;
-  --sp-blue-soft: #eaf4ff;
-  --sp-shadow: 0 14px 36px rgba(16, 38, 63, 0.08);
-  --sp-shadow-soft: 0 8px 24px rgba(16, 38, 63, 0.055);
+  --sp-accent: #e39a3b;
+  --sp-accent-soft: #fff2df;
+  --sp-blue-soft: #eaf3fb;
+  --sp-dark: #10263f;
+  --sp-shadow: 0 10px 28px rgba(19, 43, 70, 0.07);
 }
 
 html {
@@ -22,13 +21,13 @@ body {
   font-family: "Inter", system-ui, sans-serif;
   color: var(--sp-ink);
   background:
-    radial-gradient(circle at 15% 5%, rgba(228, 154, 58, 0.16), transparent 30rem),
-    radial-gradient(circle at 85% 12%, rgba(67, 141, 204, 0.15), transparent 34rem),
-    linear-gradient(180deg, #fbfdff 0%, #f7faff 48%, #ffffff 100%);
-  line-height: 1.6;
+    radial-gradient(circle at top left, rgba(227, 154, 59, 0.12), transparent 28rem),
+    radial-gradient(circle at top right, rgba(55, 126, 190, 0.12), transparent 30rem),
+    linear-gradient(180deg, #fbfdff 0%, #f7fafc 45%, #ffffff 100%);
+  line-height: 1.58;
 }
 
-/* Hide default Quarto title block */
+/* Hide Quarto title */
 .quarto-title-banner,
 .quarto-title-block {
   display: none;
@@ -36,8 +35,8 @@ body {
 
 /* Navbar */
 .navbar {
-  background: rgba(248, 251, 255, 0.88);
-  backdrop-filter: blur(14px);
+  background: rgba(247, 250, 252, 0.92);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--sp-line);
   box-shadow: none;
 }
@@ -49,18 +48,18 @@ body {
 }
 
 .navbar-brand {
-  font-weight: 700;
-  letter-spacing: -0.015em;
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .navbar-nav .nav-link {
-  font-size: 0.94rem;
-  font-weight: 500;
+  font-size: 0.93rem;
+  font-weight: 600;
 }
 
 .navbar-nav .nav-link:hover,
 a:hover {
-  color: #0f2741 !important;
+  color: #0d2238 !important;
 }
 
 .quarto-search-button,
@@ -68,7 +67,7 @@ a:hover {
   display: none !important;
 }
 
-/* Main layout */
+/* Layout */
 main.content,
 .page-columns,
 .page-layout-full {
@@ -77,46 +76,42 @@ main.content,
 
 .home-shell,
 .page-content {
-  width: min(1040px, calc(100vw - 2rem));
+  width: min(1060px, calc(100vw - 2rem));
   margin: 0 auto;
 }
 
 .home-shell {
-  padding: 2.6rem 0 4rem;
+  padding: 2.3rem 0 4rem;
 }
 
-/* Hero section: package/software landing style */
+/* Hero: cleaner SunPy-like first fold */
 .hero-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.25rem;
+  grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
+  gap: 2.2rem;
   align-items: center;
-  text-align: center;
-  max-width: 900px;
-  margin: 1.4rem auto 2.8rem;
-  padding: 2.7rem 2rem;
-  background: rgba(255, 255, 255, 0.78);
+  margin: 1.2rem auto 3rem;
+  padding: 2.4rem 2.2rem;
+  background: rgba(255, 255, 255, 0.82);
   border: 1px solid var(--sp-line);
-  border-radius: 28px;
+  border-radius: 26px;
   box-shadow: var(--sp-shadow);
-  backdrop-filter: blur(12px);
 }
 
 .hero-copy {
-  max-width: 760px;
-  margin: 0 auto;
+  max-width: 600px;
 }
 
 .section-label {
   display: inline-block;
-  margin-bottom: 0.9rem;
-  padding: 0.25rem 0.7rem;
+  margin-bottom: 0.85rem;
+  padding: 0.28rem 0.68rem;
   border-radius: 999px;
   background: var(--sp-accent-soft);
-  color: var(--sp-accent-dark);
-  font-size: 0.76rem;
+  color: #9b5b14;
+  font-size: 0.73rem;
   font-weight: 800;
-  letter-spacing: 0.055em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
@@ -126,53 +121,52 @@ h2,
 h3 {
   font-family: "Source Serif 4", Georgia, serif;
   color: var(--sp-ink);
-  letter-spacing: -0.028em;
+  letter-spacing: -0.03em;
 }
 
 .hero-name {
-  font-size: clamp(2.6rem, 6vw, 4.6rem);
-  line-height: 0.98;
-  margin: 0 0 0.9rem;
+  font-size: clamp(2.9rem, 6vw, 5rem);
+  line-height: 0.94;
+  margin: 0 0 1rem;
 }
 
 .hero-copy p {
-  max-width: 680px;
-  margin: 0 auto 0.85rem;
-  font-size: 1.02rem;
+  max-width: 560px;
+  margin: 0 0 0.85rem;
   color: var(--sp-muted);
+  font-size: 1.02rem;
 }
 
-/* Hero links as buttons */
+/* Hero links as compact buttons */
 .inline-links {
   margin-top: 1.35rem;
-  font-size: 0.92rem;
-  color: var(--sp-muted);
+  font-size: 0;
 }
 
 .inline-links a {
-  display: inline-block;
-  margin: 0.25rem 0.18rem;
-  padding: 0.52rem 0.88rem;
+  display: inline-flex;
+  align-items: center;
+  margin: 0.22rem 0.28rem 0.22rem 0;
+  padding: 0.52rem 0.86rem;
   border: 1px solid var(--sp-line);
   border-radius: 999px;
   background: #ffffff;
   color: var(--sp-ink);
-  font-weight: 700;
+  font-size: 0.88rem;
+  font-weight: 750;
   text-decoration: none;
-  box-shadow: var(--sp-shadow-soft);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 5px 16px rgba(19, 43, 70, 0.05);
 }
 
 .inline-links a:first-child {
-  background: var(--sp-ink);
+  background: var(--sp-dark);
   color: #ffffff !important;
-  border-color: var(--sp-ink);
+  border-color: var(--sp-dark);
 }
 
 .inline-links a:hover {
   transform: translateY(-1px);
   text-decoration: none;
-  box-shadow: 0 12px 28px rgba(16, 38, 63, 0.09);
 }
 
 /* Shared cards */
@@ -184,32 +178,33 @@ h3 {
 .example-block {
   background: var(--sp-white);
   border: 1px solid var(--sp-line);
-  border-radius: 16px;
-  box-shadow: var(--sp-shadow-soft);
+  border-radius: 15px;
+  box-shadow: var(--sp-shadow);
 }
 
-/* Code/install card */
+/* Right-side code card */
 .code-card {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 1rem 1.15rem;
-  font-size: 0.92rem;
-  text-align: left;
-  background: #0f253c;
+  padding: 1rem 1.05rem;
+  font-size: 0.84rem;
+  line-height: 1.42;
+  background: #10263f;
   color: #eaf3ff;
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 16px 36px rgba(16, 38, 63, 0.16);
 }
 
 .code-card > p:first-child,
 .quick-card > p:first-child {
-  margin: 0 0 0.6rem;
-  font-size: 0.85rem;
-  font-weight: 700;
+  margin: 0 0 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 800;
   color: var(--sp-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .code-card > p:first-child {
-  color: #bfd2e8;
+  color: #b9cce2;
 }
 
 pre {
@@ -227,30 +222,31 @@ code {
 .code-card code,
 .code-card pre code {
   color: #ffffff;
+  font-size: 0.82rem;
 }
 
 /* Section headings */
 h2.section-heading,
 .section-heading {
-  font-size: 1.65rem;
-  margin: 2.4rem 0 0.85rem;
-  text-align: center;
+  font-size: 1.55rem;
+  margin: 2.25rem 0 0.8rem;
+  text-align: left;
+  border-bottom: 1px solid var(--sp-line);
+  padding-bottom: 0.45rem;
 }
 
-/* Small figure cards */
+/* Small selected figures */
 .figure-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.85rem;
-  max-width: 720px;
-  margin: 0 auto 2.6rem;
+  max-width: 760px;
+  margin: 0 0 2.8rem;
 }
 
 .image-card {
-  max-width: 210px;
-  margin: 0 auto;
+  max-width: 220px;
   overflow: hidden;
-  border-radius: 14px;
 }
 
 .image-card img {
@@ -261,9 +257,9 @@ h2.section-heading,
 }
 
 .card-caption {
-  padding: 0.62rem 0.72rem 0.7rem;
-  font-size: 0.8rem;
-  line-height: 1.35;
+  padding: 0.62rem 0.7rem 0.68rem;
+  font-size: 0.78rem;
+  line-height: 1.34;
   color: var(--sp-muted);
 }
 
@@ -274,21 +270,20 @@ h2.section-heading,
   gap: 0.7rem;
   align-items: start;
   max-width: 760px;
-  margin: 0 auto 2.4rem;
+  margin: 0 0 2.8rem;
 }
 
 .notation-item {
-  padding: 0.72rem 0.82rem;
-  border-radius: 14px;
+  padding: 0.68rem 0.78rem;
   min-height: 0;
   height: auto;
-  font-size: 0.86rem;
+  font-size: 0.84rem;
   line-height: 1.32;
 }
 
 .notation-item p {
-  margin: 0.35rem 0 0;
-  font-size: 0.86rem !important;
+  margin: 0.32rem 0 0;
+  font-size: 0.84rem !important;
   line-height: 1.32;
   color: var(--sp-ink);
 }
@@ -296,15 +291,15 @@ h2.section-heading,
 .notation-item code,
 .reference-item code {
   display: inline-block;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.22rem;
   padding: 0.1rem 0.36rem;
   border-radius: 999px;
   background: var(--sp-blue-soft);
   color: var(--sp-ink);
-  font-size: 0.76rem;
+  font-size: 0.72rem;
 }
 
-/* Quick cards and references */
+/* Quick start and references */
 .quick-grid,
 .reference-list {
   display: grid;
@@ -313,27 +308,26 @@ h2.section-heading,
 }
 
 .quick-card {
-  padding: 0.95rem 1rem;
-  margin-bottom: 1.8rem;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1.6rem;
 }
 
 .reference-item {
-  padding: 0.9rem 1rem;
-  font-size: 0.92rem;
+  padding: 0.85rem 0.95rem;
+  font-size: 0.9rem;
   line-height: 1.45;
 }
 
 /* Example blocks */
 .example-block {
-  padding: 1.05rem;
-  margin-bottom: 1.5rem;
-  border-radius: 16px;
+  padding: 1rem;
+  margin-bottom: 1.4rem;
 }
 
 .example-block h2 {
   margin-top: 0;
-  margin-bottom: 0.75rem;
-  font-size: 1.45rem;
+  margin-bottom: 0.72rem;
+  font-size: 1.35rem;
 }
 
 .example-block img {
@@ -350,29 +344,27 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin: 1rem 0 1.5rem;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   background: var(--sp-white);
   border: 1px solid var(--sp-line);
-  border-radius: 12px;
-  overflow: hidden;
 }
 
 th,
 td {
-  padding: 0.72rem 0.8rem;
+  padding: 0.7rem 0.78rem;
   border-bottom: 1px solid var(--sp-line);
 }
 
 th {
   text-align: left;
   color: var(--sp-ink);
-  font-weight: 700;
-  background: #f5f8fb;
+  font-weight: 800;
+  background: #f4f8fb;
 }
 
 figcaption {
   color: var(--sp-muted);
-  font-size: 0.86rem;
+  font-size: 0.84rem;
 }
 
 .page-footer {
@@ -384,7 +376,7 @@ figcaption {
 @media (max-width: 980px) {
   .home-shell,
   .page-content {
-    width: min(100vw - 1.3rem, 1040px);
+    width: min(100vw - 1.25rem, 1060px);
   }
 
   .home-shell {
@@ -392,8 +384,9 @@ figcaption {
   }
 
   .hero-grid {
-    padding: 2rem 1.15rem;
-    border-radius: 22px;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.8rem 1.15rem;
   }
 
   .hero-name {
@@ -413,7 +406,6 @@ figcaption {
 
   .notation-item {
     max-width: 480px;
-    margin: 0 auto;
   }
 
   .example-block img {
