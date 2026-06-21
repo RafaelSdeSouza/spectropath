@@ -9,18 +9,15 @@ page-layout: full
 
 :::: {.hero-copy}
 
-<span class="section-label">Path-signature coordinates for spectral-line morphology</span>
+<span class="section-label">Path signatures for spectral lines</span>
 
 # spectropath {.hero-name}
 
-Spectropath computes a compact set of low-order path-signature coordinates for
-spectral lines written as ordered paths \(X=(u,F)\).
+Spectropath is a small R package for low-order path coordinates of
+spectral-line profiles.
 
-The package follows the notation used in the paper:
+The current release follows the paper notation:
 `p2`, `p3u`, `p3F`, `p4F`, `p4T`, and `p_pm`.
-It is meant for the cases where line shape matters:
-blue and red wings, shoulders, broad bases, double peaks, and mixed
-emission--absorption structure.
 
 ::: {.inline-links}
 [Quick start](#quick-start)
@@ -63,9 +60,7 @@ path_features(path)
 ![Controlled profile comparison strip.](site-assets/moffat_stress_cases_panel_boundary_regions_row1.png)
 
 ::: {.showcase-caption}
-One of the controlled comparison strips from the paper, showing a case where a
-path coordinate remains discriminative in a region where width-based summaries
-overlap.
+Controlled profiles.
 :::
 ::::
 
@@ -76,51 +71,50 @@ overlap.
 </div>
 
 ::: {.showcase-caption}
-The single-object IFU example shown as galaxy context plus the starlet-masked
-kinematic result used in the paper workflow.
+IFU example.
 :::
 ::::
 
 ::::
 
-## Paper notation {.section-heading}
+## Notation {.section-heading}
 
 :::: {.notation-grid}
 
 ::: {.notation-item}
 `p2`
 
-Signed velocity--flux area.
+area
 :::
 
 ::: {.notation-item}
 `p3u`
 
-Location of asymmetry along the ordered coordinate.
+position
 :::
 
 ::: {.notation-item}
 `p3F`
 
-Whether asymmetry is concentrated in bright or faint parts of the line.
+core / wing
 :::
 
 ::: {.notation-item}
 `p4F`
 
-Higher-order flux modulation.
+modulation
 :::
 
 ::: {.notation-item}
 `p4T`
 
-Twist-like higher-order structure.
+twist
 :::
 
 ::: {.notation-item}
 `p_pm`
 
-Emission--absorption ordering.
+em / abs
 :::
 
 ::::
@@ -158,7 +152,6 @@ classical_features(path)
 
 ::::
 
-For a larger set of paper figures and small reproducible examples, see the
-[Examples](examples.html) page.
+More examples live on the [Examples](examples.html) page.
 
 ::::
