@@ -9,15 +9,15 @@ page-layout: full
 
 :::: {.hero-copy}
 
-<span class="section-label">Path signatures for spectral lines</span>
+::: {.hero-logo}
+![](site-assets/spectropath-logo-cropped.png){fig-alt="spectropath logo"}
+:::
 
-# spectropath {.hero-name}
+# spectropath {.sr-only}
 
-Low-order path coordinates for spectral-line profiles.
-
-Build a path from an ordered coordinate and a measured signal. The package
-returns the paper notation directly, with classical summaries available when
-you want them.
+Low-order path coordinates for spectral-line profiles. Build a path from an
+ordered coordinate and a measured signal; spectropath returns the notation used
+in the paper directly.
 
 ::: {.inline-links}
 [Python](python.html)

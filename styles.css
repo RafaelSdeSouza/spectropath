@@ -185,6 +185,33 @@ h3 {
   max-width: none;
 }
 
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.hero-logo {
+  width: min(220px, 58vw);
+  margin: 0 0 0.95rem;
+}
+
+.hero-logo p {
+  margin: 0;
+}
+
+.hero-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .hero-copy p {
   max-width: 31rem;
   margin: 0 0 0.8rem;

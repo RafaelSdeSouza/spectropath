@@ -32,7 +32,7 @@
     "href": "index.html",
     "title": "spectropath",
     "section": "",
-    "text": "Path signatures for spectral lines\n\n\nLow-order path coordinates for spectral-line profiles.\nBuild a path from an ordered coordinate and a measured signal. The package returns the paper notation directly, with classical summaries available when you want them.\n\nPython Functions GitHub\n\n\n\n\nMinimal R workflow\nlibrary(spectropath)\n\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) +\n  0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\n\npath_features(path)\n      p2   p_pm    p3u    p3F    p4F    p4T\n -0.3133 0.000 -0.0169 -0.1736 0.4534 0.0132\n\n\n\n\n\n\n\n\nLine-profile morphology.\n\n\n\n\n\nIFU kinematics."
+    "text": "Low-order path coordinates for spectral-line profiles. Build a path from an ordered coordinate and a measured signal; spectropath returns the notation used in the paper directly.\n\nPython Functions GitHub\n\n\n\n\nMinimal R workflow\nlibrary(spectropath)\n\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) +\n  0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\n\npath_features(path)\n      p2   p_pm    p3u    p3F    p4F    p4T\n -0.3133 0.000 -0.0169 -0.1736 0.4534 0.0132\n\n\n\n\n\n\n\n\nLine-profile morphology.\n\n\n\n\n\nIFU kinematics."
   },
   {
     "objectID": "index.html#figures",
