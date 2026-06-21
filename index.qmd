@@ -12,9 +12,9 @@ Path-signature diagnostics for spectral-line morphology
 
 # spectropath {.hero-name}
 
-`spectropath` is a small R package built around the notation used in the
-paper. It takes an ordered coordinate together with a measured line profile
-and returns a compact set of low-order coordinates for asymmetry,
+Spectropath is a small R package built around the notation used in the paper.
+It takes an ordered coordinate together with a measured line profile and
+returns a compact set of low-order coordinates for asymmetry,
 core-versus-wing structure, higher-order modulation, and
 emission--absorption ordering.
 
@@ -52,27 +52,27 @@ path_features(path)
 
 ## Selected figures {.section-heading}
 
-::: {.figure-grid}
-::: {.image-card}
+::: {.showcase-grid}
+::: {.showcase-wide}
 ![Toy profile comparison strip.](site-assets/toy_case_row1.png)
 
-::: {.card-caption}
+::: {.showcase-caption}
 Toy line profiles used to compare classical and path-based descriptors.
 :::
 :::
 
-::: {.image-card}
+::: {.showcase-small}
 ![Signed emission-absorption ordering strip.](site-assets/signed_emabs_cases_panel_boundary_regions_row1.png)
 
-::: {.card-caption}
+::: {.showcase-caption}
 Mixed-sign profiles where emission--absorption ordering becomes relevant.
 :::
 :::
 
-::: {.image-card}
+::: {.showcase-small}
 ![Single-galaxy IFU kinematic crop.](site-assets/kinematics_col1_maps.png)
 
-::: {.card-caption}
+::: {.showcase-caption}
 Path-selected regions in an IFU cube, summarized as a compact kinematic map.
 :::
 :::
