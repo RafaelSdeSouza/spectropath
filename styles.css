@@ -290,34 +290,21 @@ h2.section-heading,
   background: #f8f5ef;
 }
 
-.notation-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.88rem;
+.notation-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
   margin-bottom: 2.8rem;
 }
 
-.notation-item,
-.reference-item {
-  padding: 0.95rem 1rem;
-  font-size: 0.95rem;
-  background: linear-gradient(180deg, #fffdfa 0%, #faf7f1 100%);
-}
-
-.notation-item code,
+.notation-strip code,
 .reference-item code {
   display: inline-block;
-  margin-bottom: 0.38rem;
-  padding: 0.18rem 0.46rem;
+  padding: 0.24rem 0.52rem;
   border-radius: 999px;
   background: var(--sp-blue-soft);
   color: var(--sp-ink);
   font-size: 0.93rem;
-}
-
-.notation-item {
-  text-align: center;
-  text-transform: lowercase;
 }
 
 .quick-grid,
