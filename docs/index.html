@@ -178,8 +178,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="method" class="level2 section-heading">
 <h2 class="section-heading anchored" data-anchor-id="method">Method</h2>
 <div class="method-panel">
-<p><code>spectropath</code> provides tools for calculating low-order path-signature coordinates of spectral-line profiles. These are summary statistics of piecewise-linear paths, adapted here to curves of the form <code>X(u) = (u, F(u))</code>, where <code>u</code> is an ordered spectral coordinate and <code>F</code> is the measured signal.</p>
-<p>The returned coordinates describe ordered line morphology: signed area, where asymmetry occurs, whether structure is concentrated in the core or the wings, higher-order bends, and emission–absorption ordering. They are meant to complement classical line measurements such as flux, equivalent width, FWHM, <code>W80</code>, centroid, and skewness.</p>
+<p><code>spectropath</code> provides tools for calculating low-order path-signature coordinates of spectral-line profiles. These are summary statistics of ordered paths, adapted here to line profiles of the form <code>X(u) = (u, F(u))</code>, where <code>u</code> is wavelength or velocity and <code>F</code> is flux.</p>
+<p>The returned coordinates describe ordered line morphology: signed area, where asymmetry occurs, whether structure is concentrated in the core or the wings, higher-order bends, and emission–absorption ordering. For convenience, the package also estimates classical summaries such as line flux, equivalent width, FWHM, <code>W80</code>, centroid, and skewness.</p>
 </div>
 </section>
 <section id="figures" class="level2 section-heading">
