@@ -113,10 +113,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./examples.html"> 
-<span class="menu-text">Examples</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="./python.html"> 
 <span class="menu-text">Python</span></a>
   </li>  
@@ -149,104 +145,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="home-shell">
-<div class="hero-grid">
+<div id="overview" class="hero-grid">
 <div class="hero-copy">
-<p><span class="section-label">Path-signature coordinates for spectral-line morphology</span></p>
+<p><span class="section-label">Path signatures for spectral lines</span></p>
 <section id="spectropath" class="level1 hero-name">
 <h1 class="hero-name">spectropath</h1>
-<p>Spectropath computes a compact set of low-order path-signature coordinates for spectral lines treated as ordered paths <code>X = (u, F)</code>.</p>
-<p>The package follows the notation used in the paper: <code>p2</code>, <code>p3u</code>, <code>p3F</code>, <code>p4F</code>, <code>p4T</code>, and <code>p_pm</code>. It is built for the cases where line shape matters: blue and red wings, shoulders, broad bases, double peaks, and mixed emission–absorption structure.</p>
+<p>Low-order path coordinates for spectral-line profiles.</p>
+<p>Build a path from an ordered coordinate and a measured signal. The package returns the paper notation directly, with classical summaries available when you want them.</p>
 <div class="inline-links">
-<p><a href="#quick-start">Quick start</a> <a href="examples.html">Examples</a> <a href="python.html">Python</a> <a href="reference.html">Reference</a> <a href="https://github.com/RafaelSdeSouza/spectropath">GitHub</a></p>
+<p><a href="python.html">Python</a> <a href="reference.html">Reference</a> <a href="https://github.com/RafaelSdeSouza/spectropath">GitHub</a></p>
 </div>
 </section>
 </div>
 <div class="code-card">
-<p>Minimal workflow</p>
+<p>Minimal R workflow</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spectropath)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">500</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(u, <span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span> <span class="fl">0.25</span> <span class="sc">*</span> <span class="fu">dnorm</span>(u, <span class="fl">1.8</span>, <span class="fl">0.45</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">cbind</span>(u, f)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">path_features</span>(path)</span></code></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(u, <span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.25</span> <span class="sc">*</span> <span class="fu">dnorm</span>(u, <span class="fl">1.8</span>, <span class="fl">0.45</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">cbind</span>(u, f)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">path_features</span>(path)</span></code></pre></div>
 <pre class="text"><code>      p2   p_pm    p3u    p3F    p4F    p4T
  -0.3133 0.000 -0.0169 -0.1736 0.4534 0.0132</code></pre>
 </div>
 </div>
-<section id="selected-results" class="level2 section-heading">
-<h2 class="section-heading anchored" data-anchor-id="selected-results">Selected results</h2>
+<section id="figures" class="level2 section-heading">
+<h2 class="section-heading anchored" data-anchor-id="figures">Figures</h2>
 <div class="showcase-grid">
 <div class="showcase-lead">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="site-assets/moffat_stress_cases_panel_boundary_regions_row1.png" class="img-fluid figure-img"></p>
-<figcaption>Controlled profile comparison strip.</figcaption>
-</figure>
+<div class="showcase-frame showcase-frame-wide">
+<p><img src="site-assets/moffat_stress_cases_panel_boundary_regions_row1.png" class="img-fluid"></p>
 </div>
 <div class="showcase-caption">
-<p>One of the controlled comparison strips from the paper, showing a case where a path coordinate remains discriminative in a region where width-based summaries overlap.</p>
+<p>Profile comparison.</p>
 </div>
 </div>
 <div class="showcase-side">
 <div class="kinematics-pair">
-<p><img src="site-assets/kinematics_context_crop.png" class="kinematics-slice context" alt="MaNGA galaxy context image"> <img src="site-assets/kinematics_starlet_crop.png" class="kinematics-slice masked" alt="Starlet-masked kinematic map"></p>
+<p><img src="site-assets/kinematics_context_crop.png" class="kinematics-slice img-fluid"> <img src="site-assets/kinematics_starlet_crop.png" class="kinematics-slice img-fluid"></p>
 </div>
 <div class="showcase-caption">
-<p>The single-object IFU example shown as galaxy context plus the starlet-masked kinematic result used in the paper workflow.</p>
+<p>IFU kinematics.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="paper-notation" class="level2 section-heading">
-<h2 class="section-heading anchored" data-anchor-id="paper-notation">Paper notation</h2>
-<div class="notation-grid">
-<div class="notation-item">
-<p><code>p2</code></p>
-<p>Signed velocity–flux area.</p>
+<section id="notation" class="level2 section-heading">
+<h2 class="section-heading anchored" data-anchor-id="notation">Notation</h2>
+<div class="notation-strip">
+<p><code>p2</code> <code>p3u</code> <code>p3F</code> <code>p4F</code> <code>p4T</code> <code>p_pm</code></p>
 </div>
-<div class="notation-item">
-<p><code>p3u</code></p>
-<p>Location of asymmetry along the ordered coordinate.</p>
-</div>
-<div class="notation-item">
-<p><code>p3F</code></p>
-<p>Whether asymmetry is concentrated in bright or faint parts of the line.</p>
-</div>
-<div class="notation-item">
-<p><code>p4F</code></p>
-<p>Higher-order flux modulation.</p>
-</div>
-<div class="notation-item">
-<p><code>p4T</code></p>
-<p>Twist-like higher-order structure.</p>
-</div>
-<div class="notation-item">
-<p><code>p_pm</code></p>
-<p>Emission–absorption ordering.</p>
-</div>
-</div>
-</section>
-<section id="quick-start" class="level2 section-heading">
-<h2 class="section-heading anchored" data-anchor-id="quick-start">Quick start</h2>
-<div class="quick-grid">
-<div class="quick-card">
-<p>Install</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"RafaelSdeSouza/spectropath"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spectropath)</span></code></pre></div>
-</div>
-<div class="quick-card">
-<p>Compute</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">500</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(u, <span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span> <span class="fl">0.25</span> <span class="sc">*</span> <span class="fu">dnorm</span>(u, <span class="fl">1.8</span>, <span class="fl">0.45</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">cbind</span>(u, f)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">path_features</span>(path)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">classical_features</span>(path)</span></code></pre></div>
-</div>
-</div>
-<p>For a larger set of paper figures and small reproducible examples, see the <a href="examples.html">Examples</a> page.</p>
 </section>
 </div>
 

@@ -5,21 +5,6 @@ page-layout: full
 
 :::: {.home-shell}
 
-:::: {.home-layout}
-
-:::: {.home-rail}
-
-## On this page
-
-- [Overview](#overview)
-- [Figures](#figures)
-- [Notation](#notation)
-- [Quick start](#quick-start)
-
-::::
-
-:::: {.home-main}
-
 :::: {.hero-grid #overview}
 
 :::: {.hero-copy}
@@ -30,12 +15,11 @@ page-layout: full
 
 Low-order path coordinates for spectral-line profiles.
 
-The package follows the notation used in the paper and keeps the interface
-small: build a path, compute the coefficients, and compare them with
-classical summaries.
+Build a path from an ordered coordinate and a measured signal. The package
+returns the paper notation directly, with classical summaries available when
+you want them.
 
 ::: {.inline-links}
-[Quick start](#quick-start)
 [Python](python.html)
 [Reference](reference.html)
 [GitHub](https://github.com/RafaelSdeSouza/spectropath)
@@ -45,13 +29,14 @@ classical summaries.
 
 :::: {.code-card}
 
-Minimal workflow
+Minimal R workflow
 
 ```r
 library(spectropath)
 
 u <- seq(-5, 5, length.out = 500)
-f <- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)
+f <- dnorm(u, 0, 1) +
+  0.25 * dnorm(u, 1.8, 0.45)
 path <- cbind(u, f)
 
 path_features(path)
@@ -77,7 +62,7 @@ path_features(path)
 ::::
 
 ::: {.showcase-caption}
-Controlled profile pairs.
+Profile comparison.
 :::
 ::::
 
@@ -89,7 +74,7 @@ Controlled profile pairs.
 ::::
 
 ::: {.showcase-caption}
-IFU kinematic pair.
+IFU kinematics.
 :::
 ::::
 
@@ -100,42 +85,5 @@ IFU kinematic pair.
 ::: {.notation-strip}
 `p2` `p3u` `p3F` `p4F` `p4T` `p_pm`
 :::
-
-## Quick start {#quick-start .section-heading}
-
-:::: {.quick-grid}
-
-:::: {.quick-card}
-
-Install
-
-```r
-install.packages("remotes")
-remotes::install_github("RafaelSdeSouza/spectropath")
-library(spectropath)
-```
-
-::::
-
-:::: {.quick-card}
-
-Compute
-
-```r
-u <- seq(-5, 5, length.out = 500)
-f <- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)
-path <- cbind(u, f)
-
-path_features(path)
-classical_features(path)
-```
-
-::::
-
-::::
-
-::::
-
-::::
 
 ::::

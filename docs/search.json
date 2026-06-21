@@ -109,27 +109,20 @@
     "href": "index.html",
     "title": "spectropath",
     "section": "",
-    "text": "Path-signature coordinates for spectral-line morphology\n\n\nSpectropath computes a compact set of low-order path-signature coordinates for spectral lines treated as ordered paths X = (u, F).\nThe package follows the notation used in the paper: p2, p3u, p3F, p4F, p4T, and p_pm. It is built for the cases where line shape matters: blue and red wings, shoulders, broad bases, double peaks, and mixed emission–absorption structure.\n\nQuick start Examples Python Reference GitHub\n\n\n\n\nMinimal workflow\nlibrary(spectropath)\n\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\n\npath_features(path)\n      p2   p_pm    p3u    p3F    p4F    p4T\n -0.3133 0.000 -0.0169 -0.1736 0.4534 0.0132\n\n\n\n\n\n\n\n\n\nControlled profile comparison strip.\n\n\n\nOne of the controlled comparison strips from the paper, showing a case where a path coordinate remains discriminative in a region where width-based summaries overlap.\n\n\n\n\n \n\n\nThe single-object IFU example shown as galaxy context plus the starlet-masked kinematic result used in the paper workflow.\n\n\n\n\n\n\n\n\np2\nSigned velocity–flux area.\n\n\np3u\nLocation of asymmetry along the ordered coordinate.\n\n\np3F\nWhether asymmetry is concentrated in bright or faint parts of the line.\n\n\np4F\nHigher-order flux modulation.\n\n\np4T\nTwist-like higher-order structure.\n\n\np_pm\nEmission–absorption ordering.\n\n\n\n\n\n\n\nInstall\ninstall.packages(\"remotes\")\nremotes::install_github(\"RafaelSdeSouza/spectropath\")\nlibrary(spectropath)\n\n\nCompute\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\n\npath_features(path)\nclassical_features(path)\n\n\nFor a larger set of paper figures and small reproducible examples, see the Examples page."
+    "text": "Path signatures for spectral lines\n\n\nLow-order path coordinates for spectral-line profiles.\nBuild a path from an ordered coordinate and a measured signal. The package returns the paper notation directly, with classical summaries available when you want them.\n\nPython Reference GitHub\n\n\n\n\nMinimal R workflow\nlibrary(spectropath)\n\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) +\n  0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\n\npath_features(path)\n      p2   p_pm    p3u    p3F    p4F    p4T\n -0.3133 0.000 -0.0169 -0.1736 0.4534 0.0132\n\n\n\n\n\n\n\n\n\n\nProfile comparison.\n\n\n\n\n \n\n\nIFU kinematics.\n\n\n\n\n\n\n\np2 p3u p3F p4F p4T p_pm"
   },
   {
-    "objectID": "index.html#selected-results",
-    "href": "index.html#selected-results",
+    "objectID": "index.html#figures",
+    "href": "index.html#figures",
     "title": "spectropath",
     "section": "",
-    "text": "Controlled profile comparison strip.\n\n\n\nOne of the controlled comparison strips from the paper, showing a case where a path coordinate remains discriminative in a region where width-based summaries overlap.\n\n\n\n\n \n\n\nThe single-object IFU example shown as galaxy context plus the starlet-masked kinematic result used in the paper workflow."
+    "text": "Profile comparison.\n\n\n\n\n \n\n\nIFU kinematics."
   },
   {
-    "objectID": "index.html#paper-notation",
-    "href": "index.html#paper-notation",
+    "objectID": "index.html#notation",
+    "href": "index.html#notation",
     "title": "spectropath",
     "section": "",
-    "text": "p2\nSigned velocity–flux area.\n\n\np3u\nLocation of asymmetry along the ordered coordinate.\n\n\np3F\nWhether asymmetry is concentrated in bright or faint parts of the line.\n\n\np4F\nHigher-order flux modulation.\n\n\np4T\nTwist-like higher-order structure.\n\n\np_pm\nEmission–absorption ordering."
-  },
-  {
-    "objectID": "index.html#quick-start",
-    "href": "index.html#quick-start",
-    "title": "spectropath",
-    "section": "",
-    "text": "Install\ninstall.packages(\"remotes\")\nremotes::install_github(\"RafaelSdeSouza/spectropath\")\nlibrary(spectropath)\n\n\nCompute\nu &lt;- seq(-5, 5, length.out = 500)\nf &lt;- dnorm(u, 0, 1) + 0.25 * dnorm(u, 1.8, 0.45)\npath &lt;- cbind(u, f)\n\npath_features(path)\nclassical_features(path)\n\n\nFor a larger set of paper figures and small reproducible examples, see the Examples page."
+    "text": "p2 p3u p3F p4F p4T p_pm"
   }
 ]
