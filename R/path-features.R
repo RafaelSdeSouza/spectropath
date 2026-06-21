@@ -5,17 +5,21 @@
 #' piecewise-linear path `X = (u, F)`, where `u` is an ordered coordinate and
 #' `F` is the measured signal or line flux.
 #'
-#' The names follow the paper notation:
+#' The scalar functions use descriptive names, while [path_features()] returns
+#' the compact paper notation by default:
 #'
-#' - `levy_area()` returns \eqn{A_{uF}}, the signed area.
-#' - `curl_u()` returns \eqn{C_u}, an ordered-coordinate weighted area.
-#' - `curl_f()` returns \eqn{C_F}, a flux-weighted area.
-#' - `skew_signature()` returns \eqn{S_{\rm skew}}, an order-sensitive
-#'   asymmetry contrast.
-#' - `jerk_u()`, `twist_uf()`, and `jerk_f()` return fourth-order contrasts
-#'   used to describe higher-order profile modulation.
-#' - `emabs_area()` returns \eqn{A_{+-}}, the signed area of the cumulative
-#'   emission--absorption path.
+#' - `levy_area()` is \eqn{p_2}, the signed velocity--flux area.
+#' - `curl_u()` is \eqn{p_{3u}}, where signed area lies along the ordered
+#'   coordinate. In velocity-space applications this is \eqn{p_{3v}}.
+#' - `curl_f()` is \eqn{p_{3F}}, whether signed area lies in bright or faint
+#'   parts of the line.
+#' - `jerk_f()` is \eqn{p_{4F}}, higher-order flux modulation.
+#' - `twist_uf()` is \eqn{p_{4T}}, twist-like velocity--flux structure.
+#' - `emabs_area()` is \eqn{p_{\pm}}, emission--absorption ordering.
+#'
+#' The additional helpers `skew_signature()` and `jerk_u()` are kept for
+#' exploratory work and are available from [path_features()] with
+#' `extended = TRUE`.
 #'
 #' @param path Two-column numeric matrix or data frame coercible by
 #'   [as_spectral_path()].
@@ -170,46 +174,81 @@ emabs_area <- function(path, normalize = TRUE,
 #' Compute the paper-facing path-signature feature set
 #'
 #' `path_features()` returns a one-row data frame containing the low-order
-#' path-signature diagnostics discussed in the paper. At depth 2 it returns the
-#' signed area and emission--absorption area. At depth 3 it adds the weighted
-#' area and skew-signature contrasts. At depth 4 it adds the higher-order
-#' modulation terms.
+#' path-signature diagnostics discussed in the paper. By default, columns use
+#' the compact paper notation: `p2`, `p_pm`, `p3u`, `p3F`, `p4F`, and `p4T`.
+#' Use `notation = "descriptive"` to recover the longer function-style names.
 #'
 #' @param path Two-column numeric matrix or data frame coercible by
 #'   [as_spectral_path()].
 #' @param depth Integer depth: 2, 3, or 4.
 #' @param normalize Logical; if `TRUE`, divide each contrast by its natural
 #'   coordinate and flux ranges.
+#' @param notation Column-name convention. `"paper"` returns the notation used
+#'   in the paper; `"descriptive"` returns stable, readable names matching the
+#'   scalar helper functions.
+#' @param extended Logical; if `TRUE`, include additional exploratory contrasts
+#'   `skew_signature` and `jerk_u` (or `p3skew` and `p4u` in paper notation).
 #' @return A one-row data frame.
 #' @examples
 #' u <- seq(-5, 5, length.out = 200)
 #' f <- exp(-0.5 * (u / 0.8)^2) + 0.2 * exp(-0.5 * ((u - 2) / 1.2)^2)
 #' path_features(cbind(u, f), depth = 4)
+#' path_features(cbind(u, f), depth = 4, notation = "descriptive")
 #' @export
-path_features <- function(path, depth = 4, normalize = TRUE) {
+path_features <- function(path, depth = 4, normalize = TRUE,
+                          notation = c("paper", "descriptive"),
+                          extended = FALSE) {
+  notation <- match.arg(notation)
   path <- as_spectral_path(path)
   if (!depth %in% 2:4) stop("`depth` must be 2, 3, or 4.", call. = FALSE)
 
-  out <- list(
+  descriptive <- list(
     levy_area = levy_area(path, normalize = normalize),
     emabs_area = emabs_area(path, normalize = normalize)
   )
 
   if (depth >= 3) {
-    out <- c(out, list(
+    descriptive <- c(descriptive, list(
       curl_u = curl_u(path, normalize = normalize),
-      curl_f = curl_f(path, normalize = normalize),
-      skew_signature = skew_signature(path, normalize = normalize)
+      curl_f = curl_f(path, normalize = normalize)
     ))
+
+    if (extended) {
+      descriptive <- c(descriptive, list(
+        skew_signature = skew_signature(path, normalize = normalize)
+      ))
+    }
   }
 
   if (depth >= 4) {
-    out <- c(out, list(
-      jerk_u = jerk_u(path, normalize = normalize),
-      twist_uf = twist_uf(path, normalize = normalize),
-      jerk_f = jerk_f(path, normalize = normalize)
+    if (extended) {
+      descriptive <- c(descriptive, list(
+        jerk_u = jerk_u(path, normalize = normalize)
+      ))
+    }
+
+    descriptive <- c(descriptive, list(
+      jerk_f = jerk_f(path, normalize = normalize),
+      twist_uf = twist_uf(path, normalize = normalize)
     ))
   }
 
+  if (notation == "descriptive") {
+    return(data.frame(descriptive, check.names = FALSE, row.names = NULL))
+  }
+
+  paper_names <- c(
+    levy_area = "p2",
+    emabs_area = "p_pm",
+    curl_u = "p3u",
+    curl_f = "p3F",
+    skew_signature = "p3skew",
+    jerk_u = "p4u",
+    jerk_f = "p4F",
+    twist_uf = "p4T"
+  )
+
+  out <- descriptive
+  names(out) <- unname(paper_names[names(out)])
   data.frame(out, check.names = FALSE, row.names = NULL)
 }

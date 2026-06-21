@@ -5,13 +5,24 @@ testthat::test_that("path scalar features match path_features", {
 
   got <- path_features(path, depth = 4, normalize = FALSE)
 
-  testthat::expect_equal(got$levy_area, levy_area(path, normalize = FALSE))
-  testthat::expect_equal(got$curl_u, curl_u(path, normalize = FALSE))
-  testthat::expect_equal(got$curl_f, curl_f(path, normalize = FALSE))
-  testthat::expect_equal(got$skew_signature, skew_signature(path, normalize = FALSE))
-  testthat::expect_equal(got$jerk_u, jerk_u(path, normalize = FALSE))
-  testthat::expect_equal(got$twist_uf, twist_uf(path, normalize = FALSE))
-  testthat::expect_equal(got$jerk_f, jerk_f(path, normalize = FALSE))
+  testthat::expect_equal(got$p2, levy_area(path, normalize = FALSE))
+  testthat::expect_equal(got$p3u, curl_u(path, normalize = FALSE))
+  testthat::expect_equal(got$p3F, curl_f(path, normalize = FALSE))
+  testthat::expect_equal(got$p4F, jerk_f(path, normalize = FALSE))
+  testthat::expect_equal(got$p4T, twist_uf(path, normalize = FALSE))
+
+  got_desc <- path_features(
+    path, depth = 4, normalize = FALSE,
+    notation = "descriptive", extended = TRUE
+  )
+
+  testthat::expect_equal(got_desc$levy_area, levy_area(path, normalize = FALSE))
+  testthat::expect_equal(got_desc$curl_u, curl_u(path, normalize = FALSE))
+  testthat::expect_equal(got_desc$curl_f, curl_f(path, normalize = FALSE))
+  testthat::expect_equal(got_desc$skew_signature, skew_signature(path, normalize = FALSE))
+  testthat::expect_equal(got_desc$jerk_u, jerk_u(path, normalize = FALSE))
+  testthat::expect_equal(got_desc$twist_uf, twist_uf(path, normalize = FALSE))
+  testthat::expect_equal(got_desc$jerk_f, jerk_f(path, normalize = FALSE))
 })
 
 testthat::test_that("emission absorption area changes sign under ordering reversal", {

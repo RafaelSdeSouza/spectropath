@@ -48,18 +48,24 @@ path <- cbind(u, f)
 path_features(path, depth = 4)
 ```
 
-The returned columns follow the paper notation:
+`path_features()` returns the compact paper notation by default:
 
-| Function | Symbol | Intuition |
-|---|---:|---|
-| `levy_area()` | \(A_{uF}\) | signed area / first order-sensitive asymmetry |
-| `curl_u()` | \(C_u\) | where signed area sits along the ordered coordinate |
-| `curl_f()` | \(C_F\) | whether signed area sits in core or wings |
-| `skew_signature()` | \(S_{\rm skew}\) | order-sensitive blue--red or early--late asymmetry |
-| `jerk_u()` | \(J_u\) | higher-order coordinate modulation |
-| `twist_uf()` | \(T_{uF}\) | bends, shoulders, reversals, multi-component structure |
-| `jerk_f()` | \(J_F\) | higher-order flux modulation |
-| `emabs_area()` | \(A_{+-}\) | emission--absorption ordering |
+| Column | Scalar helper | Intuition |
+|---|---|---|
+| `p2` | `levy_area()` | signed area / blue--red handedness |
+| `p3u` | `curl_u()` | where asymmetry lies along the ordered coordinate |
+| `p3F` | `curl_f()` | whether asymmetry lies in bright or faint parts of the line |
+| `p4F` | `jerk_f()` | higher-order flux modulation, shoulders, broad bases |
+| `p4T` | `twist_uf()` | twist-like bends, reversals, double peaks, multi-components |
+| `p_pm` | `emabs_area()` | emission--absorption ordering |
+
+For readable column names matching the scalar helpers, use:
+
+```r
+path_features(path, depth = 4, notation = "descriptive")
+```
+
+Additional exploratory contrasts are available with `extended = TRUE`.
 
 For mixed emission--absorption profiles:
 

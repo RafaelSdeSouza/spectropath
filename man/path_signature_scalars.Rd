@@ -56,18 +56,22 @@ piecewise-linear path \verb{X = (u, F)}, where \code{u} is an ordered coordinate
 \code{F} is the measured signal or line flux.
 }
 \details{
-The names follow the paper notation:
+The scalar functions use descriptive names, while \code{\link[=path_features]{path_features()}} returns
+the compact paper notation by default:
 \itemize{
-\item \code{levy_area()} returns \eqn{A_{uF}}, the signed area.
-\item \code{curl_u()} returns \eqn{C_u}, an ordered-coordinate weighted area.
-\item \code{curl_f()} returns \eqn{C_F}, a flux-weighted area.
-\item \code{skew_signature()} returns \eqn{S_{\rm skew}}, an order-sensitive
-asymmetry contrast.
-\item \code{jerk_u()}, \code{twist_uf()}, and \code{jerk_f()} return fourth-order contrasts
-used to describe higher-order profile modulation.
-\item \code{emabs_area()} returns \eqn{A_{+-}}, the signed area of the cumulative
-emission--absorption path.
+\item \code{levy_area()} is \eqn{p_2}, the signed velocity--flux area.
+\item \code{curl_u()} is \eqn{p_{3u}}, where signed area lies along the ordered
+coordinate. In velocity-space applications this is \eqn{p_{3v}}.
+\item \code{curl_f()} is \eqn{p_{3F}}, whether signed area lies in bright or faint
+parts of the line.
+\item \code{jerk_f()} is \eqn{p_{4F}}, higher-order flux modulation.
+\item \code{twist_uf()} is \eqn{p_{4T}}, twist-like velocity--flux structure.
+\item \code{emabs_area()} is \eqn{p_{\pm}}, emission--absorption ordering.
 }
+
+The additional helpers \code{skew_signature()} and \code{jerk_u()} are kept for
+exploratory work and are available from \code{\link[=path_features]{path_features()}} with
+\code{extended = TRUE}.
 }
 \examples{
 u <- seq(-5, 5, length.out = 200)

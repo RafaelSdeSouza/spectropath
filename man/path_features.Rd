@@ -4,7 +4,13 @@
 \alias{path_features}
 \title{Compute the paper-facing path-signature feature set}
 \usage{
-path_features(path, depth = 4, normalize = TRUE)
+path_features(
+  path,
+  depth = 4,
+  normalize = TRUE,
+  notation = c("paper", "descriptive"),
+  extended = FALSE
+)
 }
 \arguments{
 \item{path}{Two-column numeric matrix or data frame coercible by
@@ -14,19 +20,26 @@ path_features(path, depth = 4, normalize = TRUE)
 
 \item{normalize}{Logical; if \code{TRUE}, divide each contrast by its natural
 coordinate and flux ranges.}
+
+\item{notation}{Column-name convention. \code{"paper"} returns the notation used
+in the paper; \code{"descriptive"} returns stable, readable names matching the
+scalar helper functions.}
+
+\item{extended}{Logical; if \code{TRUE}, include additional exploratory contrasts
+\code{skew_signature} and \code{jerk_u} (or \code{p3skew} and \code{p4u} in paper notation).}
 }
 \value{
 A one-row data frame.
 }
 \description{
 \code{path_features()} returns a one-row data frame containing the low-order
-path-signature diagnostics discussed in the paper. At depth 2 it returns the
-signed area and emission--absorption area. At depth 3 it adds the weighted
-area and skew-signature contrasts. At depth 4 it adds the higher-order
-modulation terms.
+path-signature diagnostics discussed in the paper. By default, columns use
+the compact paper notation: \code{p2}, \code{p_pm}, \code{p3u}, \code{p3F}, \code{p4F}, and \code{p4T}.
+Use \code{notation = "descriptive"} to recover the longer function-style names.
 }
 \examples{
 u <- seq(-5, 5, length.out = 200)
 f <- exp(-0.5 * (u / 0.8)^2) + 0.2 * exp(-0.5 * ((u - 2) / 1.2)^2)
 path_features(cbind(u, f), depth = 4)
+path_features(cbind(u, f), depth = 4, notation = "descriptive")
 }
