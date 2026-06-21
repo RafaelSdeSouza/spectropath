@@ -24,7 +24,7 @@ coordinates remain sensitive to ordered morphology.
 ![Signed emission-absorption ordering strip.](site-assets/signed_emabs_cases_panel_boundary_regions_row1.png)
 
 For mixed-sign profiles, the emission--absorption ordering coordinate
-\(p_{\pm}\) provides a compact way to distinguish profiles that differ mainly
+`p_pm` provides a compact way to distinguish profiles that differ mainly
 in the order in which emission and absorption appear along the spectral axis.
 :::
 

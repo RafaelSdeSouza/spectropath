@@ -13,9 +13,10 @@ Path-signature diagnostics for spectral-line morphology
 # spectropath {.hero-name}
 
 `spectropath` is a small R package built around the notation used in the
-paper. It treats a spectral profile as an ordered path \(X=(u,F)\) and
-returns a compact set of low-order coordinates for asymmetry, core-versus-wing
-structure, higher-order modulation, and emission--absorption ordering.
+paper. It takes an ordered coordinate together with a measured line profile
+and returns a compact set of low-order coordinates for asymmetry,
+core-versus-wing structure, higher-order modulation, and
+emission--absorption ordering.
 
 It is meant for the situations where line shape matters: blue and red wings,
 shoulders, broad bases, double peaks, and mixed emission--absorption
