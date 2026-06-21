@@ -10,7 +10,7 @@ page-layout: full
 :::: {.hero-copy}
 
 ::: {.hero-logo}
-![](site-assets/spectropath-logo-cropped.png){fig-alt="spectropath logo"}
+![](site-assets/spectropath-logo.png){fig-alt="spectropath logo"}
 :::
 
 # spectropath {.sr-only}
